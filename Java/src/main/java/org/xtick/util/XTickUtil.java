@@ -66,6 +66,7 @@ public class XTickUtil {
                         sb.append(new String(buffer, 0, len));
                     }
                     consumer.accept(sb.toString());
+                    return;
                 }
             }
             consumer.accept(convertInputStreamToString(inputStream));

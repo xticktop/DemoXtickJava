@@ -23,47 +23,26 @@ public class XTickStockApiClient {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public String getTimeData(int type, String code, String period, String token, MethodType method) throws IOException {
-        String url = "http://api.xtick.top/doc/time";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("token", token).build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
 
     public void DemoForHistoryData() throws IOException {
         int type = 1;//沪深京A股Type=1，港股Type=3
         String code = "000001";
-        String startDate = "2025-03-25";
-        String endDate = "2025-03-25";
-        String token = "d2fb322e96195d00338ac4d0dcb3e104";//登录XTick官网，获取token
-        String result = getHistoryData(type, code, "tick", "", startDate, endDate, token, MethodType.GET);
+        String startDate = "2025-04-25";
+        String endDate = LocalDate.now().toString();
+        String result = getHistoryData(type, code, "tick", "", startDate, startDate, XTickConst.token, MethodType.GET);
         List<Tick> ticks = JsonUtil.jsonToList(result, Tick.class);
         System.out.println(String.format("code=%s,period=tick,date=%s,history data size=%s", code, startDate, ticks.size()));
-        endDate = LocalDate.now().toString();
         for (String period : XTickConst.historyKlinePeriods) {
             for (String fq : XTickConst.dividends) {
-                result = getHistoryData(type, code, period, fq, startDate, endDate, token, MethodType.GET);
+                result = getHistoryData(type, code, period, fq, startDate, endDate, XTickConst.token, MethodType.GET);
                 List<Minute> klines = JsonUtil.jsonToList(result, Minute.class);
                 System.out.println(String.format("code=%s,period=%s,fq=%s,startDate=%s,endDate=%s,history data size=%s", code, period, fq, startDate, endDate, klines.size()));
             }
         }
     }
 
-    public void DemoForTimeData() throws IOException {
-        int type = 1;//沪深京A股Type=1，港股Type=3
-        String code = "000001";
-        String result = getTimeData(type, code, "time", XTickConst.token, MethodType.GET);
-        List<Tick> ticks = JsonUtil.jsonToList(result, Tick.class);
-        System.out.println(String.format("code=%s,period=time,time data size=%s", code, ticks.size()));
-        for (String period : XTickConst.timeKlinePeriods) {
-            result = getTimeData(type, code, period, XTickConst.token, MethodType.GET);
-            List<Minute> klines = JsonUtil.jsonToList(result, Minute.class);
-            System.out.println(String.format("code=%s,period=%s,time data size=%s", code, period, klines.size()));
-        }
-    }
-
     public static void main(String[] args) throws IOException {
         XTickStockApiClient client = new XTickStockApiClient();
-        //client.DemoForHistoryData();//获取历史数据代码示例
-        client.DemoForTimeData();//获取实时数据代码示例
+        client.DemoForHistoryData();//获取历史数据代码示例
     }
 }

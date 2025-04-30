@@ -4,6 +4,8 @@ package org.xtick;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.websocket.*;
+import org.apache.catalina.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.xtick.bean.MinutePacket;
 import org.xtick.bean.TickPacket;
 import org.xtick.bean.TickSubcribeInfo;
@@ -39,13 +41,15 @@ public class XTickWebSocketClient {
 
     private Consumer<String> dataConsumer = result -> {
         Object packet;
-        if (result.contains("1m")) {
-            packet = JsonUtil.jsonToObj(result, MinutePacket.class);
-        } else {
-            packet = JsonUtil.jsonToObj(result, TickPacket.class);
-        }
-        if (Objects.nonNull(packet)) {//数据包加入队列中，后续业务模块调用处理
-            queue.offer(packet);
+        if(StringUtils.isNotBlank(result)){
+            if (result.contains("1m")) {
+                packet = JsonUtil.jsonToObj(result, MinutePacket.class);
+            } else {
+                packet = JsonUtil.jsonToObj(result, TickPacket.class);
+            }
+            if (Objects.nonNull(packet)) {//数据包加入队列中，后续业务模块调用处理
+                queue.offer(packet);
+            }
         }
     };
 

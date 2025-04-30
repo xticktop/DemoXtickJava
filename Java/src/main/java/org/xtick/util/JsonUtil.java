@@ -63,7 +63,7 @@ public class JsonUtil {
         try {
             return mapper.readValue(content, clazz);
         } catch (Exception e) {
-            log.error("Failed to Json to Object", e);
+            log.error("Failed to Json to Object.content={}", content,e);
         }
         return null;
     }

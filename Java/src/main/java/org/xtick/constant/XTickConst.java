@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableSet;
 import java.util.Set;
 
 public interface XTickConst {
-    String token = "d2fb322e96195d00338ac4d0dcb3e104";//登录XTick官网，获取token
+    String token = "";//登录XTick官网，获取token
     Set<String> dividends = ImmutableSet.<String>builder()
             .add("none")
             .add("front")
