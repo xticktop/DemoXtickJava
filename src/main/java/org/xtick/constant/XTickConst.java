@@ -7,6 +7,18 @@ import java.util.Set;
 
 public interface XTickConst {
     String token = "";//登录XTick官网，获取token
+
+    Set<String> reports = ImmutableSet.<String>builder()//财务报表
+            .add("'Balance'")
+            .add("Income")
+            .add("CashFlow")
+            .add("Capital")
+            .add("Holdernum")
+            .add("Top10holder")
+            .add("Top10flowholder")
+            .add("Pershareindex")
+            .build();
+
     Set<String> dividends = ImmutableSet.<String>builder()
             .add("none")
             .add("front")
