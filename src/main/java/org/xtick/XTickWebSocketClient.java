@@ -127,7 +127,7 @@ public class XTickWebSocketClient {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         //List<String> authCodes = ImmutableList.of("time.SZ", "time.SH", "time.BJ", "time.HK", "tick.SZ", "tick.SH", "tick.BJ", "tick.HK");
-        List<String> authCodes = ImmutableList.of("tick.BJ");//新用户，可以订阅北交所的tick行情数据
+        List<String> authCodes = ImmutableList.of("time.SZ","tick.BJ");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();

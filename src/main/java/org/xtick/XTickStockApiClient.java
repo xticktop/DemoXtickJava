@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 行情实时数据、财务报表数据获取API接口。
+ * 官网：http://www.xtick.top/
+ */
 public class XTickStockApiClient {
     /**
      * 获取财务数据
@@ -33,8 +37,8 @@ public class XTickStockApiClient {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public void DemoFinancialData() throws IOException {
-        int type = 1;//沪深京A股Type=1，港股Type=3
+    public void DemoForFinancialData() throws IOException {
+        int type = 1;//沪深京A股Type=1，港股Type=3，ETF Type=20
         String code = "000001";
         String startDate = "2020-04-25";
         String endDate = LocalDate.now().toString();
@@ -94,7 +98,10 @@ public class XTickStockApiClient {
 
     public static void main(String[] args) throws IOException {
         XTickStockApiClient client = new XTickStockApiClient();
-        client.DemoFinancialData();//获取财务数据代码示例
+        String result = client.getMarketData(1, "000001", "1m", "none", LocalDate.now().minusMonths(1).toString(), LocalDate.now().toString(), XTickConst.token, MethodType.GET);
+        List<Minute> datas = JsonUtil.jsonToList(result, Minute.class);//获取tick数据
+        System.out.println(datas);
+        //client.DemoForFinancialData();//获取财务数据代码示例
         //client.DemoForMarketData();//获取历史数据代码示例
     }
 }
