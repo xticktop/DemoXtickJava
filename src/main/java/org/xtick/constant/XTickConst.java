@@ -3,9 +3,11 @@ package org.xtick.constant;
 
 import com.google.common.collect.ImmutableSet;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 public interface XTickConst {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     String token = "";//登录XTick官网，获取token
 
     Set<String> reports = ImmutableSet.<String>builder()//财务报表

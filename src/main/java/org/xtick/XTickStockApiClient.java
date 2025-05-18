@@ -99,7 +99,7 @@ public class XTickStockApiClient {
     public static void main(String[] args) throws IOException {
         XTickStockApiClient client = new XTickStockApiClient();
         String result = client.getMarketData(1, "000001", "1m", "none", LocalDate.now().minusMonths(1).toString(), LocalDate.now().toString(), XTickConst.token, MethodType.GET);
-        List<Minute> datas = JsonUtil.jsonToList(result, Minute.class);//获取tick数据
+        List<Minute> datas = JsonUtil.jsonToList(result, Minute.class);//获取1分钟数据
         System.out.println(datas);
         //client.DemoForFinancialData();//获取财务数据代码示例
         //client.DemoForMarketData();//获取历史数据代码示例
