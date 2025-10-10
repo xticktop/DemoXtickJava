@@ -70,10 +70,10 @@ public class XTickWebSocketClient {
                 container.setDefaultMaxTextMessageBufferSize(1 * 1024 * 1024);
                 container.setDefaultMaxSessionIdleTimeout(1 * 60 * 60 * 1000L);
                 container.connectToServer(this, endpointURI);
-                XTickUtil.sleepSeconds(1);
+                XTickUtil.sleepSeconds(3);
             } catch (Exception e) {
                 System.err.println("Failed to connect to WebSocket server" + e.getMessage());
-                XTickUtil.sleepSeconds(10);
+                XTickUtil.sleepSeconds(30);
                 connectToServer(endpointURI, reason);
             }
         }
@@ -132,4 +132,5 @@ public class XTickWebSocketClient {
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();
     }
+
 }
