@@ -73,7 +73,7 @@ public class XTickWebSocketClient {
                 XTickUtil.sleepSeconds(3);
             } catch (Exception e) {
                 System.err.println("Failed to connect to WebSocket server" + e.getMessage());
-                XTickUtil.sleepSeconds(30);
+                XTickUtil.sleepSeconds(60);
                 connectToServer(endpointURI, reason);
             }
         }
@@ -134,3 +134,4 @@ public class XTickWebSocketClient {
     }
 
 }
+
