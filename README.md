@@ -35,6 +35,7 @@ XTick行情API提供了全面、准确、稳定的行情数据，帮助开发者
 - tick.SH - 订阅上交所A股的tick数据。
 - tick.BJ - 订阅北交所A股的tick数据。
 - tick.HK - 订阅港交所港股的tick数据。
+- 000001.SZ - 订阅深交所平安银行000001的tick数据。支持按股票个数订阅，包括沪深京港四个交易所的股票，最多订阅50个。
 - time.SZ - 订阅深交所A股的k线数据，包括time、1m。
 - time.SH - 订阅上交所A股的k线数据，包括time、1m。
 - time.BJ - 订阅北交所A股的k线数据，包括time、1m。
@@ -44,12 +45,20 @@ XTick行情API提供了全面、准确、稳定的行情数据，帮助开发者
 取消订阅：http://api.xtick.top/doc/unsubscribe?token=043fbdcba7f3f3ab332ffff123456789 <br>
 入参：token 登录XTick网站，注册获取
 
-2.2 行情数据接口
+2.2 股票代码接口
+获取所有股票代码，包括沪深京A股、港股、沪深指数、ETF几类数据。
+1. 请求方法：
+   请求地址：http://api.xtick.top/doc/codes?token=043fbdcba7f3f3ab332ffff123456789
+   备注：返回数据实例 1-000001 代表 type-code
+   沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
+   入参1：token 登录XTick网站，注册获取。
+
+2.3 行情数据接口
 1. 请求方法：
    请求地址：http://api.xtick.top/doc/market?type=1&code=000001&period=tick&fq=none&startDate=2025-03-25&endDate=2025-03-25&token=043fbdcba7f3f3ab332ffff123456789
    备注：行情数据支持交易日内盘内实时更新。
    入参1：type 股票类别
-   沪深京A股type=1，港股type=3，沪深ETF type=20;
+   沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
    入参2：code 股票代码
    比如平安银行为000001
    入参3：period 用于表示要获取的周期，枚举取值如下：

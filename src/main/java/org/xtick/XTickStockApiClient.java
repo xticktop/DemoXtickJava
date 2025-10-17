@@ -20,6 +20,17 @@ import java.util.Map;
  */
 public class XTickStockApiClient {
     /**
+     * 获取市场所有股票代码
+     * 返回数据实例 1-000001 代表 type-code
+     * 其中type为1代表沪深京A股，3代表港股（沪深港通支持的港股），10代表沪深指数 20代表ETF
+     */
+    public String getAllCodes(String token, MethodType method) throws IOException {
+        String url = "http://api.xtick.top/doc/codes";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
      * 获取财务数据
      */
     public String getFinancialData(int type, String code, String report, String startDate, String endDate, String token, MethodType method) throws IOException {
@@ -98,7 +109,10 @@ public class XTickStockApiClient {
 
     public static void main(String[] args) throws IOException {
         XTickStockApiClient client = new XTickStockApiClient();
-        String result = client.getMarketData(1, "000001", "1m", "none", LocalDate.now().minusMonths(1).toString(), LocalDate.now().toString(), XTickConst.token, MethodType.GET);
+        String codeStr = client.getAllCodes(XTickConst.token, MethodType.POST);
+        List<String> codes = JsonUtil.jsonToList(codeStr, String.class);
+        System.out.println(codes);
+        String result = client.getMarketData(10, "000001", "1h", "none", LocalDate.now().minusDays(1).toString(), LocalDate.now().plusDays(1).toString(), XTickConst.token, MethodType.GET);
         List<Minute> datas = JsonUtil.jsonToList(result, Minute.class);//获取1分钟数据
         System.out.println(datas);
         //client.DemoForFinancialData();//获取财务数据代码示例

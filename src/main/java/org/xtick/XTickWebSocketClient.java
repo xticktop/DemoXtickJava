@@ -4,7 +4,7 @@ package org.xtick;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.websocket.*;
-import org.apache.catalina.util.StringUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.xtick.bean.MinutePacket;
 import org.xtick.bean.TickPacket;
@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -113,7 +114,8 @@ public class XTickWebSocketClient {
                     Object data = queue.take();
                     if (data instanceof TickPacket) { //处理业务逻辑....
                         TickPacket packet = (TickPacket) data;
-                        System.out.println(String.format("%s,received tick data.[authCode=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(), packet.getPeriod(), packet.getData().size()));
+                        long tickTime = new ArrayList<>(packet.getData().values()).get(0).getTime();
+                        System.out.println(String.format("%s,received tick data.time=%s秒,[authCode=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter),(System.currentTimeMillis()-tickTime)/1000, packet.getAuthCode(), packet.getPeriod(), packet.getData().size()));
                     } else {
                         MinutePacket packet = (MinutePacket) data;
                         System.out.println(String.format("%s,received minute data.[authCode=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(), packet.getPeriod(), packet.getData().size()));
@@ -127,11 +129,9 @@ public class XTickWebSocketClient {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         //List<String> authCodes = ImmutableList.of("time.SZ", "time.SH", "time.BJ", "time.HK", "tick.SZ", "tick.SH", "tick.BJ", "tick.HK");
-        List<String> authCodes = ImmutableList.of("time.SZ","tick.BJ");//新用户，可以订阅北交所的tick行情数据
+        List<String> authCodes = ImmutableList.of("tick.SZ", "tick.HK");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();
     }
-
 }
-
