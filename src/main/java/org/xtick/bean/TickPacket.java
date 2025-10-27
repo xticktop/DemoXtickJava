@@ -15,6 +15,5 @@ import java.util.Map;
 public class TickPacket{
     private String period;
     private String authCode;
-    private int seqNo;
     private Map<String, Tick> data;
 }

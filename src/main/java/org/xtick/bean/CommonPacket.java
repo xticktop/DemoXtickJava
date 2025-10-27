@@ -14,6 +14,5 @@ import java.util.Map;
 @NoArgsConstructor
 public class CommonPacket {
     private String authCode;
-    private int seqNo;
     private Map<String, Object> data;
 }

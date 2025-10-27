@@ -14,6 +14,7 @@
 
 XTick行情API提供了全面、准确、稳定的行情数据，帮助开发者和研究者构建创新的交易和分析工具，满足金融行业的需求，进行深入的市场分析和模型验证。
 <br>您的支持，是我们继续维护好XTick项目的动力。<br>
+XTick官网：http://www.xtick.top <br>
 <p align=center>
   <a href="http://www.xtick.top/">
     <img src="./doc/images/xtick.png" alt="实时行情报价数据接口">

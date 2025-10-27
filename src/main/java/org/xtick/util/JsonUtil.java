@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,7 +74,7 @@ public class JsonUtil {
         try {
             return mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (Exception e) {
-            log.error("Failed to Json to Object", e);
+            log.error("Failed to Json to Object.content={}",content, e);
         }
         return null;
     }
