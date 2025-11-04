@@ -2,13 +2,11 @@ package org.xtick.bean.finance;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
 @Data
-@Slf4j
 public class XTickFinanceTop10holder implements Serializable {
     private int type;
     private String code = StringUtils.EMPTY;

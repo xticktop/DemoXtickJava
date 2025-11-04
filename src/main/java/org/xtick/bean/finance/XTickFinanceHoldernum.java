@@ -1,12 +1,11 @@
 package org.xtick.bean.finance;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 @Data
-@Slf4j
 public class XTickFinanceHoldernum implements Serializable {
 
     private int type;

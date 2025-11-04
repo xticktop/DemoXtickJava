@@ -15,7 +15,6 @@ import org.apache.http.util.EntityUtils;
 import org.xtick.util.XTickUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 

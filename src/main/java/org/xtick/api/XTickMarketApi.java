@@ -1,19 +1,10 @@
 package org.xtick.api;
 
 import com.google.common.collect.ImmutableMap;
-import org.xtick.bean.Minute;
-import org.xtick.bean.Tick;
-import org.xtick.bean.finance.*;
 import org.xtick.constant.MethodType;
-import org.xtick.constant.XTickConst;
 import org.xtick.http.HttpClientRest;
-import org.xtick.util.JsonUtil;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
 
 /**

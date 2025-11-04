@@ -3,7 +3,6 @@ package org.xtick.bean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.xtick.constant.XTickConst;
 
 import java.time.Instant;
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Data
-@Slf4j
 public class Minute {
     private long time;                 //时间戳
     @JsonIgnore

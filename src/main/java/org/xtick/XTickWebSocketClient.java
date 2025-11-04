@@ -4,7 +4,6 @@ package org.xtick;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.websocket.*;
-
 import org.apache.commons.lang3.StringUtils;
 import org.xtick.bean.MinutePacket;
 import org.xtick.bean.TickPacket;

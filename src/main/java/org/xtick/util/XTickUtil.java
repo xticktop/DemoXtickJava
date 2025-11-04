@@ -1,24 +1,20 @@
 package org.xtick.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.util.StringUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.util.EntityUtils;
-
-import java.io.*;
-import java.util.Objects;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-@Slf4j
 public class XTickUtil {
     public static void sleepSeconds(long seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
         } catch (Exception e) {
-            log.info("Failed to sleep ", e);
+            System.err.println(String.format("休眠失败。" + e.getMessage()));
         }
     }
 

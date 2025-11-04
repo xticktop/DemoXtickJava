@@ -1,10 +1,8 @@
 package org.xtick.bean;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
 @Data
-@Slf4j
 public class Tick {
     private long time;                 //时间戳
     private float lastPrice;            //最新价

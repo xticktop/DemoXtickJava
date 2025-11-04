@@ -2,18 +2,16 @@ package org.xtick.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.StreamReadConstraints;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Slf4j
 public class JsonUtil {
     private final static ObjectMapper mapper;
 
@@ -38,7 +36,7 @@ public class JsonUtil {
         try {
             return mapper.writeValueAsString(obj);
         } catch (IOException e) {
-            log.error("obj to json error.", e);
+            System.err.println("obj to json error." + e.getMessage());
         }
         return null;
     }
@@ -54,7 +52,7 @@ public class JsonUtil {
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
         } catch (IOException e) {
-            log.error("obj to json error.", e);
+            System.err.println("obj to json error." + e.getMessage());
         }
         return null;
     }
@@ -64,7 +62,16 @@ public class JsonUtil {
         try {
             return mapper.readValue(content, clazz);
         } catch (Exception e) {
-            log.error("Failed to Json to Object.content={}", content,e);
+            System.err.println("obj to json error.content=" + content);
+        }
+        return null;
+    }
+
+    public static <T> T jsonToObj(String content, TypeReference<T> valueTypeRef) {
+        try {
+            return mapper.readValue(content, valueTypeRef);
+        } catch (Exception e) {
+            System.err.println("obj to json error.content=" + content);
         }
         return null;
     }
@@ -74,7 +81,7 @@ public class JsonUtil {
         try {
             return mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (Exception e) {
-            log.error("Failed to Json to Object.content={}",content, e);
+            System.err.println("obj to json error.content=" + content);
         }
         return null;
     }
