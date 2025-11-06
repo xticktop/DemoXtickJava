@@ -197,9 +197,9 @@ public class XTickStockApiClient {
         List<String> codes = JsonUtil.jsonToList(codeStr, String.class);
         System.out.println(codes);
         String code = "000001";
-//        demoForMarketData(code);
-//        demoForFinancialData(code);
-//        demoForIndicatorData(code);
+        demoForMarketData(code);
+        demoForFinancialData(code);
+        demoForIndicatorData(code);
         demoForWatchData(code);
     }
 }

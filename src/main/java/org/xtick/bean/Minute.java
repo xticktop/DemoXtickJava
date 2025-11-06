@@ -12,6 +12,8 @@ import java.time.ZoneId;
 @Data
 public class Minute {
     private long time;                 //时间戳
+    private int type;                  //市场类型 沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
+    private String code;               //代码
     @JsonIgnore
     private String date;                //时间戳对应日期
     private float open;                 //开盘价
@@ -20,6 +22,7 @@ public class Minute {
     private float close;                //收盘价
     private double amount;               //成交总额
     private float volume;               //成交总量（手）
+
 
     @JsonProperty("time")
     public void setTime(long time) {

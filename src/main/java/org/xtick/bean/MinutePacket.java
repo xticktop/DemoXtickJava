@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.List;
 
 @Data
 @Builder
@@ -15,5 +15,5 @@ import java.util.Map;
 public class MinutePacket {
     private String period;
     private String authCode;
-    private Map<String, Minute> data;
+    private List<Minute> data;
 }

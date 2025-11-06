@@ -41,10 +41,10 @@ import java.util.function.Consumer;
  * - tick.BJ - 订阅北交所A股的tick数据。
  * - tick.HK - 订阅港交所港股的tick数据。
  * - 000001.SZ - 订阅深交所平安银行000001的tick数据。支持按股票个数订阅，包括沪深京港四个交易所的股票，最多订阅50个。
- * - time.SZ - 订阅深交所A股的k线数据，包括time、1m。
- * - time.SH - 订阅上交所A股的k线数据，包括time、1m。
- * - time.BJ - 订阅北交所A股的k线数据，包括time、1m。
- * - time.HK - 订阅港交所港股的k线数据，包括time、1m。
+ * - time.SZ - 订阅深交所A股的k线数据，包括1m。
+ * - time.SH - 订阅上交所A股的k线数据，包括1m。
+ * - time.BJ - 订阅北交所A股的k线数据，包括1m。
+ * - time.HK - 订阅港交所港股的k线数据，包括1m。
  * 入参2：token 登录XTick网站，注册获取
  *
  */
