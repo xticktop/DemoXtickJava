@@ -1,11 +1,10 @@
 package org.xtick.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -32,7 +31,21 @@ public class XTickUtil {
                     return sb.toString();
                 }
             }
-            return convertInputStreamToString(inputStream);
+        } catch (Exception e) {
+            System.err.println(String.format("解析数据失败。" + e.getMessage()));
+        }
+        return "";
+    }
+
+    public static String processGZipData(InputStream inputStream) {
+        try (GZIPInputStream gzipInputStream = new GZIPInputStream(inputStream)) {
+            byte[] buffer = new byte[1024];
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = gzipInputStream.read(buffer)) > 0) {
+                sb.append(new String(buffer, 0, len));
+            }
+            return sb.toString();
         } catch (Exception e) {
             System.err.println(String.format("解析数据失败。" + e.getMessage()));
         }

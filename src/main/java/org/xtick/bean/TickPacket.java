@@ -13,6 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TickPacket{
+    private int type;
     private String period;
     private String authCode;
     private Map<String, Tick> data;

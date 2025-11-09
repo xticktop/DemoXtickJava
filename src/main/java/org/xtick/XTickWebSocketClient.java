@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.websocket.*;
 import org.apache.commons.lang3.StringUtils;
+import org.xtick.bean.CommonPacket;
 import org.xtick.bean.MinutePacket;
 import org.xtick.bean.TickPacket;
 import org.xtick.bean.TickSubcribeInfo;
@@ -36,17 +37,24 @@ import java.util.function.Consumer;
  * 1. 订阅方法：
  * 订阅数据：订阅为Websocket API，请在Github上下载开源项目，参考XTickWebSocketClient.java中已实现的订阅功能。
  * 入参1：authCodes 枚举取值如下：
- * - tick.SZ - 订阅深交所A股的tick数据。
- * - tick.SH - 订阅上交所A股的tick数据。
- * - tick.BJ - 订阅北交所A股的tick数据。
- * - tick.HK - 订阅港交所港股的tick数据。
+ * 请不要订阅多余数据，多余数据会影响数据推送效率。比如只需要股票数据，就不需要订阅指数和场内基金的数据。
+ * <p>
+ * 按交易所订阅：
+ * 深交所：tick.SZ.1  tick.SZ.10  tick.SZ.20
+ * 上交所：tick.SH.1  tick.SH.10  tick.SH.20
+ * 北交所：tick.BJ.1
+ * 港交所：tick.HK.3
+ * <p>
+ * 订阅time数据可取枚举值如下：
+ * 深交所：time.SZ.1  time.SZ.10  time.SZ.20
+ * 上交所：time.SH.1  time.SH.10  time.SH.20
+ * 北交所：time.BJ.1
+ * 港交所：time.HK.3
+ * <p>
+ * 按股票个数订阅，最多50个股票：
  * - 000001.SZ - 订阅深交所平安银行000001的tick数据。支持按股票个数订阅，包括沪深京港四个交易所的股票，最多订阅50个。
- * - time.SZ - 订阅深交所A股的k线数据，包括1m。
- * - time.SH - 订阅上交所A股的k线数据，包括1m。
- * - time.BJ - 订阅北交所A股的k线数据，包括1m。
- * - time.HK - 订阅港交所港股的k线数据，包括1m。
+ * - 000002.SZ - 订阅深交所万科000002的tick数据。支持按股票个数订阅，包括沪深京港四个交易所的股票，最多订阅50个。
  * 入参2：token 登录XTick网站，注册获取
- *
  */
 @ClientEndpoint
 public class XTickWebSocketClient {
@@ -58,10 +66,11 @@ public class XTickWebSocketClient {
     private Consumer<String> dataConsumer = result -> {
         Object packet;
         if (StringUtils.isNotBlank(result)) {
-            if (result.contains("1m")) {
-                packet = JsonUtil.jsonToObj(result, MinutePacket.class);
-            } else {
+//            packet = JsonUtil.jsonToObj(result, CommonPacket.class);
+            if (result.contains("tick")) {
                 packet = JsonUtil.jsonToObj(result, TickPacket.class);
+            } else {
+                packet = JsonUtil.jsonToObj(result, MinutePacket.class);
             }
             if (Objects.nonNull(packet)) {//数据包加入队列中，后续业务模块调用处理
                 queue.offer(packet);
@@ -130,10 +139,12 @@ public class XTickWebSocketClient {
                     if (data instanceof TickPacket) { //处理业务逻辑....
                         TickPacket packet = (TickPacket) data;
                         long tickTime = new ArrayList<>(packet.getData().values()).get(0).getTime();
-                        System.out.println(String.format("%s,received tick data.time=%s秒,[authCode=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter),(System.currentTimeMillis()-tickTime)/1000, packet.getAuthCode(), packet.getPeriod(), packet.getData().size()));
+                        System.out.println(String.format("%s,received tick data.time=%s秒,[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), (System.currentTimeMillis() - tickTime) / 1000, packet.getAuthCode(), packet.getType(),packet.getPeriod(), packet.getData().size()));
+//                        System.out.println(packet);
                     } else {
                         MinutePacket packet = (MinutePacket) data;
-                        System.out.println(String.format("%s,received minute data.[authCode=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(), packet.getPeriod(), packet.getData().size()));
+                        System.out.println(String.format("%s,received minute data.[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(),packet.getType(), packet.getPeriod(), packet.getData().size()));
+//                        System.out.println(packet);
                     }
                 } catch (Exception e) {
                     System.err.println("Failed to process data." + e.getMessage());
@@ -144,12 +155,46 @@ public class XTickWebSocketClient {
 
     /**
      * 测试订阅行情数据推送功能入口
+     * <p>
+     * authCodes参数解释
+     * 订阅类别 period.market.type  tick.SH.1
+     * period代表周期，可取枚举值如下：tick time   代表tick数据和K线数据
+     * market代表市场，可取枚举值如下：SZ SH BJ HK 代表深交所、上交所、北交所、港交所
+     * type代表数据类型，可取枚举值如下：1 3 10 20  代表沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
+     * <p>
+     * 最后，总结，大家关注以下枚举值即可
+     * 订阅tick数据可取枚举值如下：
+     * 深交所：tick.SZ.1  tick.SZ.10  tick.SZ.20
+     * 上交所：tick.SH.1  tick.SH.10  tick.SH.20
+     * 北交所：tick.BJ.1
+     * 港交所：tick.HK.3
+     * <p>
+     * 订阅time数据可取枚举值如下：
+     * 深交所：time.SZ.1  time.SZ.10  time.SZ.20
+     * 上交所：time.SH.1  time.SH.10  time.SH.20
+     * 北交所：time.BJ.1
+     * 港交所：time.HK.3
+     *
+     * - tick.SZ.1 - 订阅深交所A股的tick数据。
+     * - tick.SZ.10 - 订阅深交所指数的tick数据。
+     * - tick.SZ.20 - 订阅深交所ETF的tick数据。
+     * - tick.SH.1 - 订阅上交所A股的tick数据。
+     * - tick.SH.10 - 订阅上交所指数的tick数据。
+     * - tick.SH.20 - 订阅上交所ETF的tick数据。
+     * - tick.BJ.1 - 订阅北交所ETF的tick数据。
+     * - tick.HK.3 - 订阅港交所ETF的tick数据。
+     * - time.SZ.1 - 订阅深交所A股的k线数据，包括1m。
+     * - time.SH.1 - 订阅上交所A股的k线数据，包括1m。
+     * - time.BJ.1 - 订阅北交所A股的k线数据，包括1m。
+     * - time.HK.3 - 订阅港交所港股的k线数据，包括1m。
+     *
      * @param args
      * @throws UnsupportedEncodingException
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
-        //List<String> authCodes = ImmutableList.of("time.SZ", "time.SH", "time.BJ", "time.HK", "tick.SZ", "tick.SH", "tick.BJ", "tick.HK");
-        List<String> authCodes = ImmutableList.of("tick.SZ", "tick.HK");//新用户，可以订阅北交所的tick行情数据
+        //List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH","00001.HK","920001.BJ","000001.SH","510300.SH");
+        //List<String> authCodes = ImmutableList.of("tick.SZ.1", "tick.SZ.10", "tick.SZ.20", "time.SZ.1", "tick.SH.1", "tick.SH.10", "tick.SH.20", "time.SH.1", "tick.BJ.1", "time.BJ.1", "tick.HK.3", "time.HK.3");
+        List<String> authCodes = ImmutableList.of("tick.BJ.1");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();

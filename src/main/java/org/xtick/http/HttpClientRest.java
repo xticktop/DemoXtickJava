@@ -1,5 +1,6 @@
 package org.xtick.http;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.http.Header;
@@ -12,10 +13,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.http.HttpHeaders;
 import org.xtick.util.XTickUtil;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -62,14 +65,19 @@ public class HttpClientRest {
     public String get(String url, Map<String, Object> para, RequestConfig requestConfig) throws IOException {
         HttpGet httpGet = new HttpGet(String.format("%s?%s", url, para.entrySet().stream().map(entry -> String.format("%s=%s", entry.getKey(), entry.getValue())).collect(Collectors.joining("&"))));
         httpGet.setConfig(requestConfig);
+//        httpGet.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
         try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
-            if (Boolean.parseBoolean(para.get("zip").toString())) {
-                return XTickUtil.processData(response.getEntity().getContent());
+            Header header = response.getFirstHeader(HttpHeaders.ACCEPT_ENCODING);
+            if (Objects.nonNull(header)) {
+                if ("zip".equals(header.getValue())) {
+                    return XTickUtil.processData(response.getEntity().getContent());
+                } else if ("gzip".equals(header.getValue())) {
+                    return XTickUtil.processGZipData(response.getEntity().getContent());
+                }
             }
             return EntityUtils.toString(response.getEntity());
         }
     }
-
 
     public String post(String url, Map<String, Object> para) throws IOException {
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(12000).setConnectionRequestTimeout(12000).setSocketTimeout(12000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
@@ -79,10 +87,16 @@ public class HttpClientRest {
     public String post(String url, Map<String, Object> para, RequestConfig requestConfig) throws IOException {
         HttpPost httpPost = new HttpPost(url);
         httpPost.setConfig(requestConfig);
+//        httpPost.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
         httpPost.setEntity(new UrlEncodedFormEntity(para.entrySet().stream().map(entry -> new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue()))).collect(Collectors.toList())));
         try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-            if (Boolean.parseBoolean(para.get("zip").toString())) {
-                return XTickUtil.processData(response.getEntity().getContent());
+            Header header = response.getFirstHeader(HttpHeaders.ACCEPT_ENCODING);
+            if (Objects.nonNull(header)) {
+                if ("zip".equals(header.getValue())) {
+                    return XTickUtil.processData(response.getEntity().getContent());
+                } else if ("gzip".equals(header.getValue())) {
+                    return XTickUtil.processGZipData(response.getEntity().getContent());
+                }
             }
             return EntityUtils.toString(response.getEntity());
         }

@@ -13,6 +13,8 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommonPacket {
+    private int type;
+    private String period;
     private String authCode;
-    private Map<String, Object> data;
+    private Object data;
 }

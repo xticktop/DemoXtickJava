@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MinutePacket {
+    private int type;
     private String period;
     private String authCode;
     private List<Minute> data;

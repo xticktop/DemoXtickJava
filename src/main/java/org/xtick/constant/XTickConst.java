@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface XTickConst {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    String token = "85a317d32ca6260f46977eac5b460f2a";//登录XTick官网，获取token
+    String token = "086c3de8e3356c0a1";//登录XTick官网，获取token
 
     Set<String> reports = ImmutableSet.<String>builder()//财务报表
             .add("'Balance'")

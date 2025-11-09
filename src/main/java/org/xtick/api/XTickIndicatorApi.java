@@ -353,7 +353,7 @@ public class XTickIndicatorApi {
      MACD指标
      MACD指标的中文名称为移动平均线收敛/发散指标，英文名称为Moving Average Convergence Divergence。
      接口地址：/doc/macd
-     请求示例：http://api.xtick.top/doc/macd?type=1&code=000001&period=1d&fq=front&startDate=2025-01-01&endDate=2026-01-01&token=123456789&inReal=2&optInFastPeriod=12&optInSlowPeriod=26&optInSignalPeriod=9
+     请求示例：http://api.xtick.top/doc/macd?type=1&code=000001&period=1d&fq=front&startDate=2025-01-01&endDate=2026-01-01&token=123456789&inReal=2&optInFastPeriod=26&optInSlowPeriod=12&optInSignalPeriod=9
      输入参数
      - type：股票类别。
      - code：股票代码。
@@ -363,12 +363,12 @@ public class XTickIndicatorApi {
      - endDate：结束时间。
      - token：令牌。
      - inReal：数据标签。取值范围：1|open-开盘价；2|close-收盘价；3|high-最高价；4|low-最低价；5|volume-成交量；6|amount-成交额。参考值：2。
-     - optInFastPeriod：快速移动平均线周期。参考值：12。
-     - optInSlowPeriod：慢速移动平均线周期。参考值：26。
+     - optInFastPeriod：快速移动平均线周期。参考值：26。
+     - optInSlowPeriod：慢速移动平均线周期。参考值：12。
      - optInSignalPeriod：信号移动平均线周期。参考值：9。
      输出参数
-     - macd:指标计算值。
-     - signal:指标计算值。
+     - diff:指标计算值。
+     - dea:指标计算值。
      - hist:指标计算值。
      */
     public String macd(int type, String code, String period, String fq, String startDate, String endDate, String token,int inReal,int optInFastPeriod,int optInSlowPeriod,int optInSignalPeriod, MethodType method) throws IOException {
@@ -379,7 +379,7 @@ public class XTickIndicatorApi {
      MACDEXT指标
      MACDEXT指标的中文名称是MACD扩展，英文名称是MACD Extended。MACD扩展是基于移动平均线收敛背离（MACD）指标的一种变种指标。
      接口地址：/doc/macdext
-     请求示例：http://api.xtick.top/doc/macdext?type=1&code=000001&period=1d&fq=front&startDate=2025-01-01&endDate=2026-01-01&token=123456789&inReal=2&optInFastPeriod=12&optInFastMAType=1&optInSlowPeriod=26&optInSlowMAType=1&optInSignalPeriod=9&optInSignalMAType=1
+     请求示例：http://api.xtick.top/doc/macdext?type=1&code=000001&period=1d&fq=front&startDate=2025-01-01&endDate=2026-01-01&token=123456789&inReal=2&optInFastPeriod=26&optInFastMAType=1&optInSlowPeriod=12&optInSlowMAType=1&optInSignalPeriod=9&optInSignalMAType=1
      输入参数
      - type：股票类别。
      - code：股票代码。
@@ -389,15 +389,15 @@ public class XTickIndicatorApi {
      - endDate：结束时间。
      - token：令牌。
      - inReal：数据标签。取值范围：1|open-开盘价；2|close-收盘价；3|high-最高价；4|low-最低价；5|volume-成交量；6|amount-成交额。参考值：2。
-     - optInFastPeriod：快速移动平均线周期。参考值：12。
+     - optInFastPeriod：快速移动平均线周期。参考值：26。
      - optInFastMAType：快速移动平均线类型。取值范围：1|SMA-简单移动平均线；2|EMA-指数移动平均线；3|WMA-加权移动平均线；4|DEMA-双指数移动平均线；5|TEMA-三重指数移动平均线；6|TRIMA-三重移动平均线；7|KAMA-考夫曼自适应移动平均线；8|MAMA-自适应移动平均线；9|T3-三重移动平均线。参考值：1。
-     - optInSlowPeriod：慢速移动平均线周期。参考值：26。
+     - optInSlowPeriod：慢速移动平均线周期。参考值：12。
      - optInSlowMAType：慢速移动平均线类型。取值范围：1|SMA-简单移动平均线；2|EMA-指数移动平均线；3|WMA-加权移动平均线；4|DEMA-双指数移动平均线；5|TEMA-三重指数移动平均线；6|TRIMA-三重移动平均线；7|KAMA-考夫曼自适应移动平均线；8|MAMA-自适应移动平均线；9|T3-三重移动平均线。参考值：1。
      - optInSignalPeriod：信号移动平均线周期。参考值：9。
      - optInSignalMAType：信号移动平均线类型。取值范围：1|SMA-简单移动平均线；2|EMA-指数移动平均线；3|WMA-加权移动平均线；4|DEMA-双指数移动平均线；5|TEMA-三重指数移动平均线；6|TRIMA-三重移动平均线；7|KAMA-考夫曼自适应移动平均线；8|MAMA-自适应移动平均线；9|T3-三重移动平均线。参考值：1。
      输出参数
-     - macd:指标计算值。
-     - signal:指标计算值。
+     - diff:指标计算值。
+     - dea:指标计算值。
      - hist:指标计算值。
      */
     public String macdext(int type, String code, String period, String fq, String startDate, String endDate, String token,int inReal,int optInFastPeriod,int optInFastMAType,int optInSlowPeriod,int optInSlowMAType,int optInSignalPeriod,int optInSignalMAType, MethodType method) throws IOException {
@@ -420,8 +420,8 @@ public class XTickIndicatorApi {
      - inReal：数据标签。取值范围：1|open-开盘价；2|close-收盘价；3|high-最高价；4|low-最低价；5|volume-成交量；6|amount-成交额。参考值：2。
      - optInSignalPeriod：信号移动平均线周期。参考值：9。
      输出参数
-     - macd:指标计算值。
-     - signal:指标计算值。
+     - diff:指标计算值。
+     - dea:指标计算值。
      - hist:指标计算值。
      */
     public String macdfix(int type, String code, String period, String fq, String startDate, String endDate, String token,int inReal,int optInSignalPeriod, MethodType method) throws IOException {
