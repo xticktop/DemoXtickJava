@@ -196,10 +196,10 @@ public class XTickStockApiClient {
         String codeStr = xTickMarketApi.getAllCodes(XTickConst.token, MethodType.POST);//获取所有股票代码，包括沪深京股票、ETF、港股、指数
         List<String> codes = JsonUtil.jsonToList(codeStr, String.class);
         System.out.println(codes);
-        String code = "002816";
-        String tradeDate = "2025-10-10";
-        String result = new XTickWatchApi().getTickHistory(1, code, tradeDate, XTickConst.token, MethodType.GET);
-        List<Tick> tickOfDay = JsonUtil.jsonToList(result, Tick.class);
+        String code = "000001";
+        String tradeDate = "2025-11-21";
+        String result = new XTickMarketApi().getMarket(1, code, "1d", "3", tradeDate, tradeDate, XTickConst.token, MethodType.POST);
+        List<Minute> tickOfDay = JsonUtil.jsonToList(result, Minute.class);
         System.out.println(String.format("[tick.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tickOfDay == null ? 0 : tickOfDay.size()));
 
         demoForMarketData(code);

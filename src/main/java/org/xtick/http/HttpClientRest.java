@@ -65,9 +65,9 @@ public class HttpClientRest {
     public String get(String url, Map<String, Object> para, RequestConfig requestConfig) throws IOException {
         HttpGet httpGet = new HttpGet(String.format("%s?%s", url, para.entrySet().stream().map(entry -> String.format("%s=%s", entry.getKey(), entry.getValue())).collect(Collectors.joining("&"))));
         httpGet.setConfig(requestConfig);
-//        httpGet.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
+        httpGet.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
         try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
-            Header header = response.getFirstHeader(HttpHeaders.ACCEPT_ENCODING);
+            Header header = response.getFirstHeader(HttpHeaders.CONTENT_ENCODING);
             if (Objects.nonNull(header)) {
                 if ("zip".equals(header.getValue())) {
                     return XTickUtil.processData(response.getEntity().getContent());
@@ -87,10 +87,10 @@ public class HttpClientRest {
     public String post(String url, Map<String, Object> para, RequestConfig requestConfig) throws IOException {
         HttpPost httpPost = new HttpPost(url);
         httpPost.setConfig(requestConfig);
-//        httpPost.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
+        httpPost.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
         httpPost.setEntity(new UrlEncodedFormEntity(para.entrySet().stream().map(entry -> new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue()))).collect(Collectors.toList())));
         try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-            Header header = response.getFirstHeader(HttpHeaders.ACCEPT_ENCODING);
+            Header header = response.getFirstHeader(HttpHeaders.CONTENT_ENCODING);
             if (Objects.nonNull(header)) {
                 if ("zip".equals(header.getValue())) {
                     return XTickUtil.processData(response.getEntity().getContent());

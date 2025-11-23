@@ -1,14 +1,18 @@
 package org.xtick.constant;
 
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 
 public interface XTickConst {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    String token = "086c3de8e3356c0a1";//登录XTick官网，获取token
+    String token = "191be8d074b5ff86d1bc5a3d7756ac14";//登录XTick官网，获取token
+    //String token = "5f189686af40aa1ee9329846c74f2a44";//登录XTick官网，获取token
+    String serverUrl = "http://api.xtick.top";
 
     Set<String> reports = ImmutableSet.<String>builder()//财务报表
             .add("'Balance'")
@@ -22,11 +26,18 @@ public interface XTickConst {
             .build();
 
     Set<String> dividends = ImmutableSet.<String>builder()
-            .add("none")
-            .add("front")
-            .add("back")
-            .add("front_ratio")
-            .add("back_ratio")
+            .add("1")
+            .add("2")
+            .add("3")
+            .add("4")
+            .add("5")
+            .build();
+
+    List<Integer> types = ImmutableList.<Integer>builder()
+            .add(1)
+            .add(3)
+            .add(10)
+            .add(20)
             .build();
 
     Set<String> markets = ImmutableSet.<String>builder()

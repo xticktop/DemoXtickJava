@@ -60,18 +60,13 @@ import java.util.function.Consumer;
 public class XTickWebSocketClient {
     private URI endpointURI;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-    private LinkedBlockingQueue<Object> queue = new LinkedBlockingQueue<>(100000);
+    private LinkedBlockingQueue<CommonPacket> queue = new LinkedBlockingQueue<>(100000);
     private ThreadPoolExecutor taskThreadPool = new ThreadPoolExecutor(3, 3, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<>(1000), new ThreadFactoryBuilder().setNameFormat("xtick-task-%d").build());
 
     private Consumer<String> dataConsumer = result -> {
-        Object packet;
+        CommonPacket packet;
         if (StringUtils.isNotBlank(result)) {
-//            packet = JsonUtil.jsonToObj(result, CommonPacket.class);
-            if (result.contains("tick")) {
-                packet = JsonUtil.jsonToObj(result, TickPacket.class);
-            } else {
-                packet = JsonUtil.jsonToObj(result, MinutePacket.class);
-            }
+            packet = JsonUtil.jsonToObj(result, CommonPacket.class);
             if (Objects.nonNull(packet)) {//数据包加入队列中，后续业务模块调用处理
                 queue.offer(packet);
             }
@@ -83,7 +78,7 @@ public class XTickWebSocketClient {
             this.endpointURI = endpointURI;
             connectToServer(endpointURI, null);
         } catch (Exception e) {
-            System.err.println("Failed to connect to WebSocket server" + e.getMessage());
+            System.err.println("Failed to connect to WebSocket server。" + e.getMessage());
         }
     }
 
@@ -135,17 +130,18 @@ public class XTickWebSocketClient {
         taskThreadPool.execute(() -> {
             while (true) {
                 try {
-                    Object data = queue.take();
-                    if (data instanceof TickPacket) { //处理业务逻辑....
-                        TickPacket packet = (TickPacket) data;
-                        long tickTime = new ArrayList<>(packet.getData().values()).get(0).getTime();
-                        System.out.println(String.format("%s,received tick data.time=%s秒,[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), (System.currentTimeMillis() - tickTime) / 1000, packet.getAuthCode(), packet.getType(),packet.getPeriod(), packet.getData().size()));
+                    CommonPacket packet = queue.take();//处理业务逻辑....
+                    System.out.println(String.format("%s,received  data.[market=%s,type=%s,period=%s]", LocalDateTime.now().format(formatter), packet.getMarket(), packet.getType(), packet.getPeriod()));
+//                    if (data instanceof TickPacket) {
+//                        TickPacket packet = (TickPacket) data;
+//                        long tickTime = new ArrayList<>(packet.getData().values()).get(0).getTime();
+//                        System.out.println(String.format("%s,received tick data.time=%s秒,[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), (System.currentTimeMillis() - tickTime) / 1000, packet.getAuthCode(), packet.getType(), packet.getPeriod(), packet.getData().size()));
 //                        System.out.println(packet);
-                    } else {
-                        MinutePacket packet = (MinutePacket) data;
-                        System.out.println(String.format("%s,received minute data.[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(),packet.getType(), packet.getPeriod(), packet.getData().size()));
+//                    } else {
+//                        MinutePacket packet = (MinutePacket) data;
+//                        System.out.println(String.format("%s,received minute data.[authCode=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getAuthCode(), packet.getType(), packet.getPeriod(), packet.getData().size()));
 //                        System.out.println(packet);
-                    }
+//                    }
                 } catch (Exception e) {
                     System.err.println("Failed to process data." + e.getMessage());
                 }
@@ -163,18 +159,7 @@ public class XTickWebSocketClient {
      * type代表数据类型，可取枚举值如下：1 3 10 20  代表沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
      * <p>
      * 最后，总结，大家关注以下枚举值即可
-     * 订阅tick数据可取枚举值如下：
-     * 深交所：tick.SZ.1  tick.SZ.10  tick.SZ.20
-     * 上交所：tick.SH.1  tick.SH.10  tick.SH.20
-     * 北交所：tick.BJ.1
-     * 港交所：tick.HK.3
      * <p>
-     * 订阅time数据可取枚举值如下：
-     * 深交所：time.SZ.1  time.SZ.10  time.SZ.20
-     * 上交所：time.SH.1  time.SH.10  time.SH.20
-     * 北交所：time.BJ.1
-     * 港交所：time.HK.3
-     *
      * - tick.SZ.1 - 订阅深交所A股的tick数据。
      * - tick.SZ.10 - 订阅深交所指数的tick数据。
      * - tick.SZ.20 - 订阅深交所ETF的tick数据。
@@ -182,6 +167,8 @@ public class XTickWebSocketClient {
      * - tick.SH.10 - 订阅上交所指数的tick数据。
      * - tick.SH.20 - 订阅上交所ETF的tick数据。
      * - tick.BJ.1 - 订阅北交所ETF的tick数据。
+     * - 000001.SZ - 订阅股票tick数据，按个数订阅。
+     * - bid.1 - 订阅沪深京集合竞价数据。
      * - tick.HK.3 - 订阅港交所ETF的tick数据。
      * - time.SZ.1 - 订阅深交所A股的k线数据，包括1m。
      * - time.SH.1 - 订阅上交所A股的k线数据，包括1m。
@@ -194,7 +181,7 @@ public class XTickWebSocketClient {
     public static void main(String[] args) throws UnsupportedEncodingException {
         //List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH","00001.HK","920001.BJ","000001.SH","510300.SH");
         //List<String> authCodes = ImmutableList.of("tick.SZ.1", "tick.SZ.10", "tick.SZ.20", "time.SZ.1", "tick.SH.1", "tick.SH.10", "tick.SH.20", "time.SH.1", "tick.BJ.1", "time.BJ.1", "tick.HK.3", "time.HK.3");
-        List<String> authCodes = ImmutableList.of("tick.BJ.1");//新用户，可以订阅北交所的tick行情数据
+        List<String> authCodes = ImmutableList.of("tick.BJ.1","time.SH.1", "time.SZ.1","bid.1");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();

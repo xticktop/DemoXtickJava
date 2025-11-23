@@ -2,6 +2,7 @@ package org.xtick.api;
 
 import com.google.common.collect.ImmutableMap;
 import org.xtick.constant.MethodType;
+import org.xtick.constant.XTickConst;
 import org.xtick.http.HttpClientRest;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 /**
  * 行情实时数据、财务报表数据获取API接口。
- *
+ * <p>
  * 官网：http://www.xtick.top/
  */
 public class XTickMarketApi {
@@ -19,7 +20,7 @@ public class XTickMarketApi {
      * 其中沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
      */
     public String getAllCodes(String token, MethodType method) throws IOException {
-        String url = "http://api.xtick.top/doc/codes";
+        String url = XTickConst.serverUrl + "/doc/codes";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
@@ -45,11 +46,11 @@ public class XTickMarketApi {
      * - 1hy - 半年线
      * - 1y - 年线
      * 参数4：fq 除权方式，用于K线数据复权计算，对tick等其他周期数据无效，枚举取值如下：
-     * - none 不复权
-     * - front 前复权
-     * - back 后复权
-     * - front_ratio 等比前复权
-     * - back_ratio 等比后复权
+     * - 1 不复权
+     * - 2 前复权
+     * - 3 后复权
+     * - 4 等比前复权
+     * - 5 等比后复权
      * 参数5：时间范围，用于指定数据请求范围，表示的范围是[startDate , endDate]区间（包含前后边界）。
      * 特别说明：
      * period为tick类型，则单次请求时间跨度最大为一天，即startDate和endDate日期需设置为同一天。
@@ -60,7 +61,7 @@ public class XTickMarketApi {
      * 入参6：token 登录XTick网站，注册获取
      */
     public String getMarket(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
-        String url = "http://api.xtick.top/doc/market";
+        String url = XTickConst.serverUrl + "/doc/market";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
@@ -88,7 +89,7 @@ public class XTickMarketApi {
      */
 
     public String getFinancial(int type, String code, String report, String startDate, String endDate, String token, MethodType method) throws IOException {
-        String url = "http://api.xtick.top/doc/financial";
+        String url = XTickConst.serverUrl + "/doc/financial";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("report", report).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
