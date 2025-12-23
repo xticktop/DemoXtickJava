@@ -39,15 +39,15 @@ public class XTickQuantApi {
      * 获取有复权变化的股票，方便更新k线历史前复权数据。
      *
      * @param type
-     * @param day
+     * @param tradeDate
      * @param token
      * @param method
      * @return
      * @throws IOException
      */
-    public String getCoreChange(int type, int day, String token, MethodType method) throws IOException {
+    public String getCoreChange(int type, String tradeDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/core/change";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("type", type).put("day", day).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("type", type).put("tradeDate", tradeDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 

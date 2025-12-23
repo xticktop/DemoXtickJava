@@ -219,10 +219,9 @@ public class XTickStockApiClient {
         Map<String, Object> datas = JsonUtil.jsonToObj(dataStr, Map.class);
         System.out.println(String.format("[core.time]code=%s,size=%s", code, datas == null ? 0 : datas.size()));
 
-        int day = 3;
-        dataStr = xTickQuantApi.getCoreChange(1, day, XTickConst.token, MethodType.POST);
+        dataStr = xTickQuantApi.getCoreChange(1, LocalDate.now().minusDays(1).toString(), XTickConst.token, MethodType.POST);
         List<XTickStockInfo> stockInfos = JsonUtil.jsonToList(dataStr, XTickStockInfo.class);
-        System.out.println(String.format("[core.change]day=%s,size=%s", day, stockInfos == null ? 0 : stockInfos.size()));
+        System.out.println(String.format("[core.change]tradeDate=%s,size=%s", LocalDate.now().minusDays(1).toString(), stockInfos == null ? 0 : stockInfos.size()));
 
         dataStr = xTickQuantApi.getQunatData(1, "all", XTickConst.token, MethodType.POST);
         QuantPacket quantPacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
