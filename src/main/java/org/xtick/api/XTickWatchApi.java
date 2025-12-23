@@ -16,18 +16,12 @@ import java.util.Map;
  * 官网：http://www.xtick.top/
  */
 public class XTickWatchApi {
-    /**
-     *
-     */
+
     public String getTickTime(int type, String code, String period, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tick/time";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("period", period).put("zip", true).put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
-
-    /**
-     *
-     */
 
     public String getTickHistory(int type, String code, String tradeDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tick/history";

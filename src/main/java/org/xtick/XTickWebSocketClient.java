@@ -6,8 +6,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.websocket.*;
 import org.apache.commons.lang3.StringUtils;
 import org.xtick.bean.CommonPacket;
-import org.xtick.bean.MinutePacket;
-import org.xtick.bean.TickPacket;
 import org.xtick.bean.TickSubcribeInfo;
 import org.xtick.constant.XTickConst;
 import org.xtick.util.JsonUtil;
@@ -20,8 +18,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -96,6 +94,8 @@ public class XTickWebSocketClient {
                 XTickUtil.sleepSeconds(60);
                 connectToServer(endpointURI, reason);
             }
+        } else {
+            System.exit(0);
         }
     }
 
@@ -117,7 +117,7 @@ public class XTickWebSocketClient {
 
     @OnMessage
     public void onMessage(byte[] data) {
-        XTickUtil.processData(new ByteArrayInputStream(data), dataConsumer);
+        XTickUtil.processData(data, dataConsumer);
     }
 
     @OnError
@@ -131,7 +131,8 @@ public class XTickWebSocketClient {
             while (true) {
                 try {
                     CommonPacket packet = queue.take();//处理业务逻辑....
-                    System.out.println(String.format("%s,received  data.[market=%s,type=%s,period=%s]", LocalDateTime.now().format(formatter), packet.getMarket(), packet.getType(), packet.getPeriod()));
+                    System.out.println(JsonUtil.toJson( packet));
+                    System.out.println(String.format("%s,received  data.[market=%s,type=%s,period=%s,size=%s]", LocalDateTime.now().format(formatter), packet.getMarket(), packet.getType(), packet.getPeriod(), packet.getData() instanceof List ? ((List) packet.getData()).size() : (packet.getData() instanceof Map ? ((Map) packet.getData()).size() : 0)));
 //                    if (data instanceof TickPacket) {
 //                        TickPacket packet = (TickPacket) data;
 //                        long tickTime = new ArrayList<>(packet.getData().values()).get(0).getTime();
@@ -160,6 +161,9 @@ public class XTickWebSocketClient {
      * <p>
      * 最后，总结，大家关注以下枚举值即可
      * <p>
+     * - 000001.SZ - 订阅股票tick数据，按个数订阅。
+     * - bid.1 - 订阅沪深京A股集合竞价期间竞价数据。
+     * - quant.1 - 订阅沪深京A股量化因子数据，数据字段参考《3.7 量化指标接口》。
      * - tick.SZ.1 - 订阅深交所A股的tick数据。
      * - tick.SZ.10 - 订阅深交所指数的tick数据。
      * - tick.SZ.20 - 订阅深交所ETF的tick数据。
@@ -167,21 +171,27 @@ public class XTickWebSocketClient {
      * - tick.SH.10 - 订阅上交所指数的tick数据。
      * - tick.SH.20 - 订阅上交所ETF的tick数据。
      * - tick.BJ.1 - 订阅北交所ETF的tick数据。
-     * - 000001.SZ - 订阅股票tick数据，按个数订阅。
-     * - bid.1 - 订阅沪深京集合竞价数据。
      * - tick.HK.3 - 订阅港交所ETF的tick数据。
-     * - time.SZ.1 - 订阅深交所A股的k线数据，包括1m。
-     * - time.SH.1 - 订阅上交所A股的k线数据，包括1m。
-     * - time.BJ.1 - 订阅北交所A股的k线数据，包括1m。
-     * - time.HK.3 - 订阅港交所港股的k线数据，包括1m。
+     * - minute.SZ.1 - 订阅深交所A股的1分钟k线数据，推送频率为实时。
+     * - minute.SZ.10 - 订阅深交所指数的1分钟k线数据，推送频率为实时。
+     * - minute.SZ.20 - 订阅深交所ETF的1分钟k线数据，推送频率为实时。
+     * - minute.SH.1 - 订阅上交所A股的1分钟k线数据，推送频率为实时。
+     * - minute.SH.10 - 订阅上交所指数的1分钟k线数据，推送频率为实时。
+     * - minute.SH.20 - 订阅上交所ETF的1分钟k线数据，推送频率为实时。
+     * - minute.BJ.1 - 订阅北交所A股的1分钟k线数据，推送频率为实时。
+     * - minute.HK.3 - 订阅港交所港股的1分钟k线数据，推送频率为实时。
+     * - time.SZ.1 - 订阅深交所A股的1分钟k线数据，推送频率为一分钟。
+     * - time.SH.1 - 订阅上交所A股的1分钟k线数据，推送频率为一分钟。
+     * - time.BJ.1 - 订阅北交所A股的1分钟k线数据，推送频率为一分钟。
+     * - time.HK.3 - 订阅港交所港股的1分钟k线数据，推送频率为一分钟。
      *
      * @param args
      * @throws UnsupportedEncodingException
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
         //List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH","00001.HK","920001.BJ","000001.SH","510300.SH");
-        //List<String> authCodes = ImmutableList.of("tick.SZ.1", "tick.SZ.10", "tick.SZ.20", "time.SZ.1", "tick.SH.1", "tick.SH.10", "tick.SH.20", "time.SH.1", "tick.BJ.1", "time.BJ.1", "tick.HK.3", "time.HK.3");
-        List<String> authCodes = ImmutableList.of("tick.BJ.1","time.SH.1", "time.SZ.1","bid.1");//新用户，可以订阅北交所的tick行情数据
+        //List<String> authCodes = ImmutableList.of("bid.1","tick.SZ.1", "tick.SZ.10", "tick.SZ.20", "time.SZ.1", "tick.SH.1", "tick.SH.10", "tick.SH.20", "time.SH.1", "tick.BJ.1", "time.BJ.1", "tick.HK.3", "time.HK.3");
+        List<String> authCodes = ImmutableList.of("minute.SZ.1");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();

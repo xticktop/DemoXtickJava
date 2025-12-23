@@ -43,7 +43,7 @@ public class HttpClientRest {
     }
 
     public String get(String url, Header[] headers) throws IOException {
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(12000).setConnectionRequestTimeout(12000).setSocketTimeout(12000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
         return get(url, headers, requestConfig);
     }
 
@@ -51,14 +51,14 @@ public class HttpClientRest {
         HttpGet httpGet = new HttpGet(url);
         httpGet.setHeaders(headers);
         httpGet.setConfig(requestConfig);
-        httpGet.setConfig(RequestConfig.custom().setConnectTimeout(12000).setConnectionRequestTimeout(12000).setSocketTimeout(12000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build());
+        httpGet.setConfig(RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build());
         try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
             return EntityUtils.toString(response.getEntity());
         }
     }
 
     public String get(String url, Map<String, Object> para) throws IOException {
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(12000).setConnectionRequestTimeout(12000).setSocketTimeout(12000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
         return get(url, para, requestConfig);
     }
 
@@ -80,7 +80,7 @@ public class HttpClientRest {
     }
 
     public String post(String url, Map<String, Object> para) throws IOException {
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(12000).setConnectionRequestTimeout(12000).setSocketTimeout(12000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).setExpectContinueEnabled(false).setCircularRedirectsAllowed(true).build();
         return post(url, para, requestConfig);
     }
 

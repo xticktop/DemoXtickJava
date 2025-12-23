@@ -15,17 +15,6 @@ import java.util.Map;
  */
 public class XTickMarketApi {
     /**
-     * 获取市场所有股票代码
-     * 返回数据实例 1-000001 代表 type-code
-     * 其中沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
-     */
-    public String getAllCodes(String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/codes";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("token", token).build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    /**
      * 获取市场行情数据数据，包括历史数据和当日盘中实时数据
      * 行情数据支持交易日内盘内实时更新，如有需要其他K线数据，比如三分钟k线或者2小时K线等，可联系作者。
      * 入参1：type 股票类别

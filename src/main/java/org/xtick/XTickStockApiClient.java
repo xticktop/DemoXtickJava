@@ -1,13 +1,10 @@
 package org.xtick;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.xtick.api.XTickIndicatorApi;
-import org.xtick.api.XTickMarketApi;
-import org.xtick.api.XTickWatchApi;
-import org.xtick.bean.Bid;
-import org.xtick.bean.Minute;
-import org.xtick.bean.Option;
-import org.xtick.bean.Tick;
+import org.xtick.api.*;
+import org.xtick.bean.*;
+import org.xtick.bean.base.XTickStockCalendar;
+import org.xtick.bean.base.XTickStockInfo;
 import org.xtick.bean.finance.*;
 import org.xtick.constant.MethodType;
 import org.xtick.constant.XTickConst;
@@ -33,7 +30,7 @@ public class XTickStockApiClient {
      * @param code
      * @throws IOException
      */
-    public static void demoForFinancialData(String code) throws IOException {
+    public static void demoForFinancialApi(String code) throws IOException {
         XTickMarketApi xTickMarketApi = new XTickMarketApi();
         int type = 1;//沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
         String startDate = LocalDate.now().minusDays(365).toString();
@@ -81,7 +78,7 @@ public class XTickStockApiClient {
      * @param code
      * @throws IOException
      */
-    public static void demoForMarketData(String code) throws IOException {
+    public static void demoForMarketApi(String code) throws IOException {
         XTickMarketApi xTickMarketApi = new XTickMarketApi();
         int type = 1;//沪深京A股Type=1，港股Type=3
         String startDate = LocalDate.now().minusDays(30).toString();
@@ -101,7 +98,7 @@ public class XTickStockApiClient {
      * @param code
      * @throws IOException
      */
-    public static void demoForIndicatorData(String code) throws IOException {
+    public static void demoForIndicatorApi(String code) throws IOException {
         XTickIndicatorApi xTickIndicatorApi = new XTickIndicatorApi();
         int type = 1;//沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
         String period = "1d";
@@ -116,7 +113,6 @@ public class XTickStockApiClient {
         result = xTickIndicatorApi.macd(type, code, period, fq, startDate, endDate, XTickConst.token, 2, 12, 26, 9, MethodType.POST);
         datas = JsonUtil.jsonToList(result, Map.class);
         System.out.println(String.format("[indicator]time=%s,code=%s,period=%s,fq=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, period, fq, startDate, endDate, datas == null ? 0 : datas.size()));
-
     }
 
     /**
@@ -125,7 +121,7 @@ public class XTickStockApiClient {
      * @param code
      * @throws IOException
      */
-    public static void demoForWatchData(String code) throws IOException {
+    public static void demoForWatchApi(String code) throws IOException {
         XTickWatchApi xTickWatchApi = new XTickWatchApi();
         int type = 1;//沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
         LocalDate tradeDate = LocalDate.now();
@@ -146,7 +142,7 @@ public class XTickStockApiClient {
         //Tick 某个交易日的Tick历史数据
         result = xTickWatchApi.getTickHistory(type, code, tradeDate.toString(), XTickConst.token, MethodType.POST);
         List<Tick> tickOfDay = JsonUtil.jsonToList(result, Tick.class);
-        System.out.println(String.format("[tick.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tickOfDay == null ? 0 : tickOfDay.size()));
+        System.out.println(String.format("[tick.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().minusDays(1).format(formatter), code, tradeDate, tickOfDay == null ? 0 : tickOfDay.size()));
         //获取竞价实时数据，多个票批量获取，单次最多50个票
         result = xTickWatchApi.getBidTime(type, batchCodes, XTickConst.token, MethodType.POST);
         List<Bid> bids = JsonUtil.jsonToList(result, Bid.class);
@@ -186,25 +182,78 @@ public class XTickStockApiClient {
     }
 
     /**
-     * 测试调用API接口功能入口
+     * 获取基础API接口数据
      *
-     * @param args
+     * @param code
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
-        XTickMarketApi xTickMarketApi = new XTickMarketApi();
-        String codeStr = xTickMarketApi.getAllCodes(XTickConst.token, MethodType.POST);//获取所有股票代码，包括沪深京股票、ETF、港股、指数
-        List<String> codes = JsonUtil.jsonToList(codeStr, String.class);
-        System.out.println(codes);
-        String code = "000001";
-        String tradeDate = "2025-11-21";
-        String result = new XTickMarketApi().getMarket(1, code, "1d", "3", tradeDate, tradeDate, XTickConst.token, MethodType.POST);
-        List<Minute> tickOfDay = JsonUtil.jsonToList(result, Minute.class);
-        System.out.println(String.format("[tick.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tickOfDay == null ? 0 : tickOfDay.size()));
+    public static void demoForBaseApi(String code) throws IOException {
+        XTickBaseApi xTickBaseApi = new XTickBaseApi();
+        String dataStr = xTickBaseApi.getCalendar(code, LocalDate.now().minusDays(3).toString(), LocalDate.now().minusDays(3).toString(), XTickConst.token, MethodType.POST);//获取所有股票代码，包括沪深京股票、ETF、港股、指数
+        List<XTickStockCalendar> calendars = JsonUtil.jsonToList(dataStr, XTickStockCalendar.class);
+        System.out.println(String.format("[calendar]code=%s,size=%s", code, calendars == null ? 0 : calendars.size()));
+        String symbol = "sz";
+        dataStr = xTickBaseApi.getStockInfo(symbol, XTickConst.token, MethodType.POST);//获取所有股票代码，包括沪深京股票、ETF、港股、指数
+        List<XTickStockInfo> stockInfos = JsonUtil.jsonToList(dataStr, XTickStockInfo.class);
+        System.out.println(String.format("[stockInfo]symbol=%s,size=%s", symbol, stockInfos == null ? 0 : stockInfos.size()));
+    }
 
-        demoForMarketData(code);
-        demoForFinancialData(code);
-        demoForIndicatorData(code);
-        demoForWatchData(code);
+    public static void demoForWebSocketApi() throws IOException {
+        XTickWebSocketApi xTickWebSocketApi = new XTickWebSocketApi();
+        String dataStr = xTickWebSocketApi.querySubscribe(XTickConst.token, MethodType.POST);
+        System.out.println("[websocket]查询已订阅服务结果：" + dataStr);
+        dataStr = xTickWebSocketApi.unsubscribe(XTickConst.token, MethodType.POST);
+        System.out.println("[websocket]取消已订阅服务结果：" + dataStr);
+    }
+
+    /**
+     * 获取量化API接口数据
+     *
+     * @param code
+     * @throws IOException
+     */
+    public static void demoForQuantApi(String code) throws IOException {
+        XTickQuantApi xTickQuantApi = new XTickQuantApi();
+        String field = "x001,x002,x003,x004,x005";
+        String dataStr = xTickQuantApi.getCoreTime(1, code, field, XTickConst.token, MethodType.POST);
+        Map<String, Object> datas = JsonUtil.jsonToObj(dataStr, Map.class);
+        System.out.println(String.format("[core.time]code=%s,size=%s", code, datas == null ? 0 : datas.size()));
+
+        int day = 3;
+        dataStr = xTickQuantApi.getCoreChange(1, day, XTickConst.token, MethodType.POST);
+        List<XTickStockInfo> stockInfos = JsonUtil.jsonToList(dataStr, XTickStockInfo.class);
+        System.out.println(String.format("[core.change]day=%s,size=%s", day, stockInfos == null ? 0 : stockInfos.size()));
+
+        dataStr = xTickQuantApi.getQunatData(1, "all", XTickConst.token, MethodType.POST);
+        QuantPacket quantPacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
+        System.out.println(String.format("[quant.data]size=%s", quantPacket == null ? 0 : quantPacket.toMap().size()));
+    }
+
+
+    /**
+     * 所有API接口的Demo示例
+     * 会调用所有接口，因此调用API接口次数多，请按需调用
+     *
+     * @throws IOException
+     */
+    public static void allDemo() throws IOException {
+        String code = "000001";
+        demoForWebSocketApi();//获取已订阅服务
+        demoForBaseApi(code);//获取基础数据
+        demoForMarketApi(code);//获取行情数据
+        demoForFinancialApi(code);//获取财务数据
+        demoForIndicatorApi(code);//获取指标数据
+        demoForWatchApi(code);//获取盯盘数据
+        demoForQuantApi(code);//获取量化数据
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        String batchCodes = "000001,000002,600000";
+        String period = "tick";
+        String result = new XTickWatchApi().getTickTime(1, batchCodes, period, XTickConst.token, MethodType.POST);
+        Map<String, Tick> ticks = JsonUtil.jsonToObj(result, new TypeReference<Map<String, Tick>>() {
+        });
+        System.out.println(String.format("[tick.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
     }
 }
