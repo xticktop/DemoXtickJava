@@ -278,8 +278,16 @@ Github地址：https://github.com/xticktop/xtick <br>
 
 ## 关注&交流
 
+为了方便小伙伴们沟通交流，创建了QQ群 (加群备注：XTick)
+，目前项目还存在很多不足之处，欢迎各位大佬进群进行交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~<br>
 如遇问题联系作者，邮箱：xticktop@163.com <br>
 [网站说明文档](https://ccn9lag3l54q.feishu.cn/wiki/ABenwEvDOiShYrkaLAJcFY5gnZf)<br>
+
+| QQ群【推荐】                                                                                  |
+|------------------------------------------------------------------------------------------|
+| <img src="./doc/images/qqGroup.png" width="200"  height="200" /> |
+
+
 
 
 
