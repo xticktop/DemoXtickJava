@@ -1,6 +1,7 @@
 package org.xtick;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.apache.commons.io.FileUtils;
 import org.xtick.api.*;
 import org.xtick.bean.*;
 import org.xtick.bean.base.XTickStockCalendar;
@@ -9,7 +10,9 @@ import org.xtick.bean.finance.*;
 import org.xtick.constant.MethodType;
 import org.xtick.constant.XTickConst;
 import org.xtick.util.JsonUtil;
+import org.xtick.util.XTickUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -230,7 +233,10 @@ public class XTickStockApiClient {
 
         dataStr = xTickQuantApi.getQunatData(1, "all", XTickConst.token, MethodType.POST);
         QuantPacket quantPacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
-        System.out.println(String.format("[quant.data]size=%s", quantPacket == null ? 0 : quantPacket.toMap().size()));
+        System.out.println(String.format("[quant.data]size=%s", quantPacket == null ? 0 : quantPacket.toFieldMap().size()));
+
+//        XTickUtil.toFile("F://quantByField.json", JsonUtil.toJsonWithStrFormat(quantPacket.toFieldMap()));//保存数据到文件,按照指标字段组织数据，方便按字段查找所有股票数据
+//        XTickUtil.toFile("F://quantByStock.json", JsonUtil.toJsonWithStrFormat(quantPacket.toStockMap()));//保存数据到文件,按照股票code组织数据，方便按个股查找所有字段数据
     }
 
 
@@ -261,5 +267,6 @@ public class XTickStockApiClient {
         System.out.println(String.format("[tick.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
 
         //allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
+        //demoForQuantApi("000001");//获取量化数据
     }
 }

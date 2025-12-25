@@ -1,5 +1,6 @@
 package org.xtick.util;
 
+import org.apache.commons.io.FileUtils;
 import org.xtick.bean.QuantPacket;
 
 import java.io.*;
@@ -14,6 +15,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class XTickUtil {
+    public static  void toFile(String path,String content) throws IOException {
+        FileUtils.writeStringToFile(new File(path), content, "UTF-8");
+    }
     public static void sleepSeconds(long seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
