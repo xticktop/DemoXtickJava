@@ -20,7 +20,7 @@ public class XTickBaseApi {
      */
     public String getCalendar(String code, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/calendar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("code", code).put("token", token).put("startDate", startDate).put("endDate", endDate).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("code", code).put("token", token).put("startDate", startDate).put("endDate", endDate).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -37,10 +37,11 @@ public class XTickBaseApi {
      * - kcb - 科创板股票
      * - etf - 全部ETF
      * - st- st股票
+     * - ts- 退市股票
      */
     public String getStockInfo(String symbol, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/stockinfo";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("zip", true).put("symbol", symbol).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("symbol", symbol).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 }

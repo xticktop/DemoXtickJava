@@ -523,7 +523,7 @@ https://github.com/xticktop/xtick <br>
 
 ### Java SDK :
 
-Gitee地址：https://github.com/xticktop/xtick <br>
+Gitee地址：https://gitee.com/xtick <br>
 Github地址：https://github.com/xticktop/xtick <br>
 
 ## 关注&交流

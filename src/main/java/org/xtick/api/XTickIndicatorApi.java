@@ -32,7 +32,7 @@ public class XTickIndicatorApi {
      */
     public String ad(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ad";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -56,7 +56,7 @@ public class XTickIndicatorApi {
      */
     public String adosc(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInFastPeriod, int optInSlowPeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/adosc";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -79,7 +79,7 @@ public class XTickIndicatorApi {
      */
     public String obv(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/obv";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -101,7 +101,7 @@ public class XTickIndicatorApi {
      */
     public String avgprice(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/avgprice";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -123,7 +123,7 @@ public class XTickIndicatorApi {
      */
     public String medprice(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/medprice";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -145,7 +145,7 @@ public class XTickIndicatorApi {
      */
     public String typprice(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/typprice";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -167,7 +167,7 @@ public class XTickIndicatorApi {
      */
     public String wclprice(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/wclprice";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -190,7 +190,7 @@ public class XTickIndicatorApi {
      */
     public String adx(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/adx";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -213,7 +213,7 @@ public class XTickIndicatorApi {
      */
     public String adxr(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/adxr";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -239,7 +239,7 @@ public class XTickIndicatorApi {
      */
     public String apo(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInFastPeriod, int optInSlowPeriod, int optInMAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/apo";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInMAType", optInMAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInMAType", optInMAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -263,7 +263,7 @@ public class XTickIndicatorApi {
      */
     public String aroon(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/aroon";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -286,7 +286,7 @@ public class XTickIndicatorApi {
      */
     public String aroonosc(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/aroonosc";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -308,7 +308,7 @@ public class XTickIndicatorApi {
      */
     public String bop(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bop";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -331,7 +331,7 @@ public class XTickIndicatorApi {
      */
     public String cci(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cci";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -355,7 +355,7 @@ public class XTickIndicatorApi {
      */
     public String cmo(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cmo";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -378,7 +378,7 @@ public class XTickIndicatorApi {
      */
     public String dx(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/dx";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -406,7 +406,7 @@ public class XTickIndicatorApi {
      */
     public String macd(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInFastPeriod, int optInSlowPeriod, int optInSignalPeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/macd";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInSignalPeriod", optInSignalPeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInSignalPeriod", optInSignalPeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -437,7 +437,7 @@ public class XTickIndicatorApi {
      */
     public String macdext(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInFastPeriod, int optInFastMAType, int optInSlowPeriod, int optInSlowMAType, int optInSignalPeriod, int optInSignalMAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/macdext";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInFastMAType", optInFastMAType).put("optInSlowPeriod", optInSlowPeriod).put("optInSlowMAType", optInSlowMAType).put("optInSignalPeriod", optInSignalPeriod).put("optInSignalMAType", optInSignalMAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInFastMAType", optInFastMAType).put("optInSlowPeriod", optInSlowPeriod).put("optInSlowMAType", optInSlowMAType).put("optInSignalPeriod", optInSignalPeriod).put("optInSignalMAType", optInSignalMAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -463,7 +463,7 @@ public class XTickIndicatorApi {
      */
     public String macdfix(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInSignalPeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/macdfix";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInSignalPeriod", optInSignalPeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInSignalPeriod", optInSignalPeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -486,7 +486,7 @@ public class XTickIndicatorApi {
      */
     public String mfi(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/mfi";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -509,7 +509,7 @@ public class XTickIndicatorApi {
      */
     public String minusdi(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/minusdi";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -532,7 +532,7 @@ public class XTickIndicatorApi {
      */
     public String minusdm(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/minusdm";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -556,7 +556,7 @@ public class XTickIndicatorApi {
      */
     public String mom(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/mom";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -579,7 +579,7 @@ public class XTickIndicatorApi {
      */
     public String plusdi(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/plusdi";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -602,7 +602,7 @@ public class XTickIndicatorApi {
      */
     public String plusdm(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/plusdm";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -628,7 +628,7 @@ public class XTickIndicatorApi {
      */
     public String ppo(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInFastPeriod, int optInSlowPeriod, int optInMAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ppo";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInMAType", optInMAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastPeriod", optInFastPeriod).put("optInSlowPeriod", optInSlowPeriod).put("optInMAType", optInMAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -652,7 +652,7 @@ public class XTickIndicatorApi {
      */
     public String roc(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/roc";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -676,7 +676,7 @@ public class XTickIndicatorApi {
      */
     public String rocp(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/rocp";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -700,7 +700,7 @@ public class XTickIndicatorApi {
      */
     public String rocr(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/rocr";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -724,7 +724,7 @@ public class XTickIndicatorApi {
      */
     public String rocr100(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/rocr100";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -748,7 +748,7 @@ public class XTickIndicatorApi {
      */
     public String rsi(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/rsi";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -776,7 +776,7 @@ public class XTickIndicatorApi {
      */
     public String stoch(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInFastK_Period, int optInSlowK_Period, int optInSlowK_MAType, int optInSlowD_Period, int optInSlowD_MAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/stoch";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastK_Period", optInFastK_Period).put("optInSlowK_Period", optInSlowK_Period).put("optInSlowK_MAType", optInSlowK_MAType).put("optInSlowD_Period", optInSlowD_Period).put("optInSlowD_MAType", optInSlowD_MAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastK_Period", optInFastK_Period).put("optInSlowK_Period", optInSlowK_Period).put("optInSlowK_MAType", optInSlowK_MAType).put("optInSlowD_Period", optInSlowD_Period).put("optInSlowD_MAType", optInSlowD_MAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -802,7 +802,7 @@ public class XTickIndicatorApi {
      */
     public String stochf(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInFastK_Period, int optInFastD_Period, int optInFastD_MAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/stochf";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastK_Period", optInFastK_Period).put("optInFastD_Period", optInFastD_Period).put("optInFastD_MAType", optInFastD_MAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInFastK_Period", optInFastK_Period).put("optInFastD_Period", optInFastD_Period).put("optInFastD_MAType", optInFastD_MAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -830,7 +830,7 @@ public class XTickIndicatorApi {
      */
     public String stochrsi(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, int optInFastK_Period, int optInFastD_Period, int optInFastD_MAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/stochrsi";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInFastK_Period", optInFastK_Period).put("optInFastD_Period", optInFastD_Period).put("optInFastD_MAType", optInFastD_MAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInFastK_Period", optInFastK_Period).put("optInFastD_Period", optInFastD_Period).put("optInFastD_MAType", optInFastD_MAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -854,7 +854,7 @@ public class XTickIndicatorApi {
      */
     public String trix(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/trix";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -879,7 +879,7 @@ public class XTickIndicatorApi {
      */
     public String ultosc(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod1, int optInTimePeriod2, int optInTimePeriod3, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ultosc";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod1", optInTimePeriod1).put("optInTimePeriod2", optInTimePeriod2).put("optInTimePeriod3", optInTimePeriod3).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod1", optInTimePeriod1).put("optInTimePeriod2", optInTimePeriod2).put("optInTimePeriod3", optInTimePeriod3).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -902,7 +902,7 @@ public class XTickIndicatorApi {
      */
     public String willr(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/willr";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -925,7 +925,7 @@ public class XTickIndicatorApi {
      */
     public String htdcperiod(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/htdcperiod";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -948,7 +948,7 @@ public class XTickIndicatorApi {
      */
     public String htdcphase(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/htdcphase";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -972,7 +972,7 @@ public class XTickIndicatorApi {
      */
     public String htphasor(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/htphasor";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -996,7 +996,7 @@ public class XTickIndicatorApi {
      */
     public String htsine(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/htsine";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1019,7 +1019,7 @@ public class XTickIndicatorApi {
      */
     public String httrendmode(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/httrendmode";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1043,7 +1043,7 @@ public class XTickIndicatorApi {
      */
     public String dema(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/dema";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1067,7 +1067,7 @@ public class XTickIndicatorApi {
      */
     public String ema(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ema";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1091,7 +1091,7 @@ public class XTickIndicatorApi {
      */
     public String kama(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/kama";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1117,7 +1117,7 @@ public class XTickIndicatorApi {
      */
     public String mama(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, double optInFastLimit, double optInSlowLimit, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/mama";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastLimit", optInFastLimit).put("optInSlowLimit", optInSlowLimit).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInFastLimit", optInFastLimit).put("optInSlowLimit", optInSlowLimit).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1141,7 +1141,7 @@ public class XTickIndicatorApi {
      */
     public String sma(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sma";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1166,7 +1166,7 @@ public class XTickIndicatorApi {
      */
     public String t3(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, double optInVFactor, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/t3";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInVFactor", optInVFactor).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInVFactor", optInVFactor).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1190,7 +1190,7 @@ public class XTickIndicatorApi {
      */
     public String tema(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tema";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1214,7 +1214,7 @@ public class XTickIndicatorApi {
      */
     public String trima(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/trima";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1238,7 +1238,7 @@ public class XTickIndicatorApi {
      */
     public String wma(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/wma";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1260,7 +1260,7 @@ public class XTickIndicatorApi {
      */
     public String cdl2crows(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl2crows";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1282,7 +1282,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3blackcrows(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3blackcrows";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1304,7 +1304,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3inside(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3inside";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1326,7 +1326,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3linestrike(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3linestrike";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1348,7 +1348,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3outside(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3outside";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1370,7 +1370,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3starsinsouth(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3starsinsouth";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1392,7 +1392,7 @@ public class XTickIndicatorApi {
      */
     public String cdl3whitesoldiers(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdl3whitesoldiers";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1415,7 +1415,7 @@ public class XTickIndicatorApi {
      */
     public String cdlabandonedbaby(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlabandonedbaby";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1437,7 +1437,7 @@ public class XTickIndicatorApi {
      */
     public String cdladvanceblock(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdladvanceblock";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1459,7 +1459,7 @@ public class XTickIndicatorApi {
      */
     public String cdlbelthold(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlbelthold";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1481,7 +1481,7 @@ public class XTickIndicatorApi {
      */
     public String cdlbreakaway(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlbreakaway";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1503,7 +1503,7 @@ public class XTickIndicatorApi {
      */
     public String cdlclosingmarubozu(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlclosingmarubozu";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1525,7 +1525,7 @@ public class XTickIndicatorApi {
      */
     public String cdlconcealbabyswall(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlconcealbabyswall";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1547,7 +1547,7 @@ public class XTickIndicatorApi {
      */
     public String cdlcounterattack(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlcounterattack";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1570,7 +1570,7 @@ public class XTickIndicatorApi {
      */
     public String cdldarkcloudcover(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdldarkcloudcover";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1592,7 +1592,7 @@ public class XTickIndicatorApi {
      */
     public String cdldoji(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdldoji";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1614,7 +1614,7 @@ public class XTickIndicatorApi {
      */
     public String cdldojistar(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdldojistar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1636,7 +1636,7 @@ public class XTickIndicatorApi {
      */
     public String cdldragonflydoji(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdldragonflydoji";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1658,7 +1658,7 @@ public class XTickIndicatorApi {
      */
     public String cdlengulfing(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlengulfing";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1681,7 +1681,7 @@ public class XTickIndicatorApi {
      */
     public String cdleveningdojistar(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdleveningdojistar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1704,7 +1704,7 @@ public class XTickIndicatorApi {
      */
     public String cdleveningstar(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdleveningstar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1726,7 +1726,7 @@ public class XTickIndicatorApi {
      */
     public String cdlgapsidesidewhite(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlgapsidesidewhite";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1748,7 +1748,7 @@ public class XTickIndicatorApi {
      */
     public String cdlgravestonedoji(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlgravestonedoji";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1770,7 +1770,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhammer(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhammer";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1792,7 +1792,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhangingman(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhangingman";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1814,7 +1814,7 @@ public class XTickIndicatorApi {
      */
     public String cdlharami(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlharami";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1836,7 +1836,7 @@ public class XTickIndicatorApi {
      */
     public String cdlharamicross(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlharamicross";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1858,7 +1858,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhignwave(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhignwave";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1880,7 +1880,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhikkake(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhikkake";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1902,7 +1902,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhikkakemod(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhikkakemod";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1924,7 +1924,7 @@ public class XTickIndicatorApi {
      */
     public String cdlhomingpigeon(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlhomingpigeon";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1946,7 +1946,7 @@ public class XTickIndicatorApi {
      */
     public String cdlidentical3crows(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlidentical3crows";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1968,7 +1968,7 @@ public class XTickIndicatorApi {
      */
     public String cdlinneck(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlinneck";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -1990,7 +1990,7 @@ public class XTickIndicatorApi {
      */
     public String cdlinvertedhammer(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlinvertedhammer";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2012,7 +2012,7 @@ public class XTickIndicatorApi {
      */
     public String cdlkicking(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlkicking";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2034,7 +2034,7 @@ public class XTickIndicatorApi {
      */
     public String cdlkickingbylength(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlkickingbylength";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2056,7 +2056,7 @@ public class XTickIndicatorApi {
      */
     public String cdlladderbottom(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlladderbottom";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2078,7 +2078,7 @@ public class XTickIndicatorApi {
      */
     public String cdllongleggeddoji(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdllongleggeddoji";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2100,7 +2100,7 @@ public class XTickIndicatorApi {
      */
     public String cdllongline(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdllongline";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2122,7 +2122,7 @@ public class XTickIndicatorApi {
      */
     public String cdlmarubozu(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlmarubozu";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2145,7 +2145,7 @@ public class XTickIndicatorApi {
      */
     public String cdlmathold(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlmathold";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2167,7 +2167,7 @@ public class XTickIndicatorApi {
      */
     public String cdlmatchinglow(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlmatchinglow";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2190,7 +2190,7 @@ public class XTickIndicatorApi {
      */
     public String cdlmorningdojistar(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlmorningdojistar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2213,7 +2213,7 @@ public class XTickIndicatorApi {
      */
     public String cdlmorningstar(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInPenetration, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlmorningstar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInPenetration", optInPenetration).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2235,7 +2235,7 @@ public class XTickIndicatorApi {
      */
     public String cdlonneck(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlonneck";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2257,7 +2257,7 @@ public class XTickIndicatorApi {
      */
     public String cdlpiercing(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlpiercing";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2279,7 +2279,7 @@ public class XTickIndicatorApi {
      */
     public String cdlrickshawman(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlrickshawman";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2301,7 +2301,7 @@ public class XTickIndicatorApi {
      */
     public String cdlrisefall3methods(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlrisefall3methods";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2323,7 +2323,7 @@ public class XTickIndicatorApi {
      */
     public String cdlseperatinglines(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlseperatinglines";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2345,7 +2345,7 @@ public class XTickIndicatorApi {
      */
     public String cdlshootingstar(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlshootingstar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2367,7 +2367,7 @@ public class XTickIndicatorApi {
      */
     public String cdlshortline(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlshortline";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2389,7 +2389,7 @@ public class XTickIndicatorApi {
      */
     public String cdlspinningtop(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlspinningtop";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2411,7 +2411,7 @@ public class XTickIndicatorApi {
      */
     public String cdlstalledpattern(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlstalledpattern";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2433,7 +2433,7 @@ public class XTickIndicatorApi {
      */
     public String cdlsticksandwhich(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlsticksandwhich";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2455,7 +2455,7 @@ public class XTickIndicatorApi {
      */
     public String cdltakuri(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdltakuri";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2477,7 +2477,7 @@ public class XTickIndicatorApi {
      */
     public String cdltasukigap(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdltasukigap";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2499,7 +2499,7 @@ public class XTickIndicatorApi {
      */
     public String cdlthrusting(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlthrusting";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2521,7 +2521,7 @@ public class XTickIndicatorApi {
      */
     public String cdltristar(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdltristar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2543,7 +2543,7 @@ public class XTickIndicatorApi {
      */
     public String cdlunique3river(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlunique3river";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2565,7 +2565,7 @@ public class XTickIndicatorApi {
      */
     public String cdlupsidegap2crows(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlupsidegap2crows";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2587,7 +2587,7 @@ public class XTickIndicatorApi {
      */
     public String cdlxsidegap3methods(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cdlxsidegap3methods";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2610,7 +2610,7 @@ public class XTickIndicatorApi {
      */
     public String acos(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/acos";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2633,7 +2633,7 @@ public class XTickIndicatorApi {
      */
     public String asin(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/asin";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2656,7 +2656,7 @@ public class XTickIndicatorApi {
      */
     public String atan(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/atan";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2679,7 +2679,7 @@ public class XTickIndicatorApi {
      */
     public String ceil(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ceil";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2702,7 +2702,7 @@ public class XTickIndicatorApi {
      */
     public String cos(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cos";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2725,7 +2725,7 @@ public class XTickIndicatorApi {
      */
     public String cosh(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/cosh";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2748,7 +2748,7 @@ public class XTickIndicatorApi {
      */
     public String exp(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/exp";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2771,7 +2771,7 @@ public class XTickIndicatorApi {
      */
     public String floor(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/floor";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2794,7 +2794,7 @@ public class XTickIndicatorApi {
      */
     public String ln(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/ln";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2817,7 +2817,7 @@ public class XTickIndicatorApi {
      */
     public String log10(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/log10";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2840,7 +2840,7 @@ public class XTickIndicatorApi {
      */
     public String sin(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sin";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2863,7 +2863,7 @@ public class XTickIndicatorApi {
      */
     public String sinh(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sinh";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2886,7 +2886,7 @@ public class XTickIndicatorApi {
      */
     public String sqrt(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sqrt";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2909,7 +2909,7 @@ public class XTickIndicatorApi {
      */
     public String tan(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tan";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2932,7 +2932,7 @@ public class XTickIndicatorApi {
      */
     public String tanh(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tanh";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2956,7 +2956,7 @@ public class XTickIndicatorApi {
      */
     public String add(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/add";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -2980,7 +2980,7 @@ public class XTickIndicatorApi {
      */
     public String div(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/div";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3004,7 +3004,7 @@ public class XTickIndicatorApi {
      */
     public String max(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/max";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3028,7 +3028,7 @@ public class XTickIndicatorApi {
      */
     public String maxindex(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/maxindex";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3052,7 +3052,7 @@ public class XTickIndicatorApi {
      */
     public String min(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/min";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3076,7 +3076,7 @@ public class XTickIndicatorApi {
      */
     public String minindex(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/minindex";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3101,7 +3101,7 @@ public class XTickIndicatorApi {
      */
     public String minmax(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/minmax";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3126,7 +3126,7 @@ public class XTickIndicatorApi {
      */
     public String minmaxindex(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/minmaxindex";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3150,7 +3150,7 @@ public class XTickIndicatorApi {
      */
     public String mult(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/mult";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3174,7 +3174,7 @@ public class XTickIndicatorApi {
      */
     public String sub(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sub";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3198,7 +3198,7 @@ public class XTickIndicatorApi {
      */
     public String sum(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sum";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3221,7 +3221,7 @@ public class XTickIndicatorApi {
      */
     public String atr(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/atr";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3244,7 +3244,7 @@ public class XTickIndicatorApi {
      */
     public String natr(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/natr";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3266,7 +3266,7 @@ public class XTickIndicatorApi {
      */
     public String truerange(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/truerange";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3291,7 +3291,7 @@ public class XTickIndicatorApi {
      */
     public String beta(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/beta";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3316,7 +3316,7 @@ public class XTickIndicatorApi {
      */
     public String correl(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal0, int inReal1, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/correl";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal0", inReal0).put("inReal1", inReal1).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3340,7 +3340,7 @@ public class XTickIndicatorApi {
      */
     public String linearreg(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/linearreg";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3364,7 +3364,7 @@ public class XTickIndicatorApi {
      */
     public String linearregangle(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/linearregangle";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3388,7 +3388,7 @@ public class XTickIndicatorApi {
      */
     public String linearregintercept(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/linearregintercept";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3412,7 +3412,7 @@ public class XTickIndicatorApi {
      */
     public String linearregslope(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/linearregslope";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3437,7 +3437,7 @@ public class XTickIndicatorApi {
      */
     public String stddev(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, double optInNbDev, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/stddev";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDev", optInNbDev).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDev", optInNbDev).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3461,7 +3461,7 @@ public class XTickIndicatorApi {
      */
     public String tsf(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/tsf";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3486,7 +3486,7 @@ public class XTickIndicatorApi {
      */
     public String variance(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, double optInNbDev, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/variance";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDev", optInNbDev).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDev", optInNbDev).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3515,7 +3515,7 @@ public class XTickIndicatorApi {
      */
     public String bbands(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, double optInNbDevUp, double optInNbDevDn, int optInMAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bbands";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDevUp", optInNbDevUp).put("optInNbDevDn", optInNbDevDn).put("optInMAType", optInMAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInNbDevUp", optInNbDevUp).put("optInNbDevDn", optInNbDevDn).put("optInMAType", optInMAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3538,7 +3538,7 @@ public class XTickIndicatorApi {
      */
     public String httrendline(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/httrendline";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3562,7 +3562,7 @@ public class XTickIndicatorApi {
      */
     public String midpoint(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/midpoint";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3585,7 +3585,7 @@ public class XTickIndicatorApi {
      */
     public String midprice(int type, String code, String period, String fq, String startDate, String endDate, String token, int optInTimePeriod, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/midprice";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInTimePeriod", optInTimePeriod).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3610,7 +3610,7 @@ public class XTickIndicatorApi {
      */
     public String movingaverage(int type, String code, String period, String fq, String startDate, String endDate, String token, int inReal, int optInTimePeriod, int optInMAType, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/movingaverage";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInMAType", optInMAType).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("inReal", inReal).put("optInTimePeriod", optInTimePeriod).put("optInMAType", optInMAType).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3634,7 +3634,7 @@ public class XTickIndicatorApi {
      */
     public String sar(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInAcceleration, double optInMaximum, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sar";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInAcceleration", optInAcceleration).put("optInMaximum", optInMaximum).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInAcceleration", optInAcceleration).put("optInMaximum", optInMaximum).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -3664,7 +3664,7 @@ public class XTickIndicatorApi {
      */
     public String sarext(int type, String code, String period, String fq, String startDate, String endDate, String token, double optInStartValue, double optInOffsetOnReverse, double optInAccelerationInitLong, double optInAccelerationLong, double optInAccelerationMaxLong, double optInAccelerationInitShort, double optInAccelerationShort, double optInAccelerationMaxShort, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/sarext";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInStartValue", optInStartValue).put("optInOffsetOnReverse", optInOffsetOnReverse).put("optInAccelerationInitLong", optInAccelerationInitLong).put("optInAccelerationLong", optInAccelerationLong).put("optInAccelerationMaxLong", optInAccelerationMaxLong).put("optInAccelerationInitShort", optInAccelerationInitShort).put("optInAccelerationShort", optInAccelerationShort).put("optInAccelerationMaxShort", optInAccelerationMaxShort).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).put("optInStartValue", optInStartValue).put("optInOffsetOnReverse", optInOffsetOnReverse).put("optInAccelerationInitLong", optInAccelerationInitLong).put("optInAccelerationLong", optInAccelerationLong).put("optInAccelerationMaxLong", optInAccelerationMaxLong).put("optInAccelerationInitShort", optInAccelerationInitShort).put("optInAccelerationShort", optInAccelerationShort).put("optInAccelerationMaxShort", optInAccelerationMaxShort).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 }

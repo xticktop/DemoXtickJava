@@ -1,18 +1,17 @@
 package org.xtick;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.apache.commons.io.FileUtils;
 import org.xtick.api.*;
 import org.xtick.bean.*;
 import org.xtick.bean.base.XTickStockCalendar;
 import org.xtick.bean.base.XTickStockInfo;
+import org.xtick.bean.core.*;
 import org.xtick.bean.finance.*;
 import org.xtick.constant.MethodType;
 import org.xtick.constant.XTickConst;
 import org.xtick.util.JsonUtil;
 import org.xtick.util.XTickUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -93,6 +92,7 @@ public class XTickStockApiClient {
                 System.out.println(String.format("[kline.market]time=%s,code=%s,period=%s,fq=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, period, fq, startDate, endDate, klines == null ? 0 : klines.size()));
             }
         }
+        //当天实时分钟数据
         for (String fq : XTickConst.dividends) {
             String result = xTickMarketApi.getKlineMinute(type, code, fq, XTickConst.token, MethodType.POST);
             List<Minute> klines = JsonUtil.jsonToList(result, Minute.class);
@@ -133,24 +133,25 @@ public class XTickStockApiClient {
         XTickWatchApi xTickWatchApi = new XTickWatchApi();
         int type = 1;//沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20
         LocalDate tradeDate = LocalDate.now();
-        String period = "tick";
-        //tick实时数据，多个票批量获取，单次最多50个票
+        String period = "lv1";
+        //买卖五档实时数据，多个票批量获取，单次最多50个票
         String batchCodes = "000001,000002,600000";
         String result = xTickWatchApi.getTickTime(type, batchCodes, period, XTickConst.token, MethodType.POST);
-        Map<String, Tick> ticks = JsonUtil.jsonToObj(result, new TypeReference<Map<String, Tick>>() {
-        });
-        System.out.println(String.format("[tick.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
 
-        //Tick 全市场的Tick实时数据
+        List<XTickLevelOne> ticks = JsonUtil.jsonToList(result, XTickLevelOne.class);
+
+        System.out.println(String.format("[lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
+
+        //全市场的买卖五档实时数据
         result = xTickWatchApi.getTickTime(type, "all", period, XTickConst.token, MethodType.POST);
-        ticks = JsonUtil.jsonToObj(result, new TypeReference<Map<String, Tick>>() {
-        });
-        System.out.println(String.format("[tick.time]time=%s,code=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), "all", period, ticks == null ? 0 : ticks.size()));
+        ticks = JsonUtil.jsonToList(result, XTickLevelOne.class);
+        System.out.println(String.format("[lv1.time]time=%s,code=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), "all", period, ticks == null ? 0 : ticks.size()));
 
-        //Tick 某个交易日的Tick历史数据
+        //某个交易日的买卖五档历史数据
         result = xTickWatchApi.getTickHistory(type, code, tradeDate.toString(), XTickConst.token, MethodType.POST);
-        List<Tick> tickOfDay = JsonUtil.jsonToList(result, Tick.class);
-        System.out.println(String.format("[tick.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().minusDays(1).format(formatter), code, tradeDate, tickOfDay == null ? 0 : tickOfDay.size()));
+        List<XTickLevelOne> levelOneOfDay = JsonUtil.jsonToList(result, XTickLevelOne.class);
+        System.out.println(String.format("[lv1.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().minusDays(1).format(formatter), code, tradeDate, levelOneOfDay == null ? 0 : levelOneOfDay.size()));
+
         //获取竞价实时数据，多个票批量获取，单次最多50个票
         result = xTickWatchApi.getBidTime(type, batchCodes, XTickConst.token, MethodType.POST);
         List<Bid> bids = JsonUtil.jsonToList(result, Bid.class);
@@ -222,21 +223,55 @@ public class XTickStockApiClient {
      */
     public static void demoForQuantApi(String code) throws IOException {
         XTickQuantApi xTickQuantApi = new XTickQuantApi();
+        String dataStr = xTickQuantApi.getQunatData(1, "all", XTickConst.token, MethodType.POST);
+        QuantPacket quantDataPacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
+        System.out.println(String.format("[quant.data]size=%s", quantDataPacket == null ? 0 : quantDataPacket.toFieldMap().size()));
+
+//        dataStr = xTickQuantApi.getQunatTime(1, "all", XTickConst.token, MethodType.POST);
+//        QuantPacket quantTimePacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
+//        System.out.println(String.format("[quant.time]size=%s", quantTimePacket == null ? 0 : quantTimePacket.toFieldMap().size()));
+
+        XTickUtil.toFile("F://quantByField.json", JsonUtil.toJsonWithStrFormat(quantDataPacket.toFieldMap()));//保存数据到文件,按照指标字段组织数据，方便按字段查找所有股票数据
+        XTickUtil.toFile("F://quantByStock.json", JsonUtil.toJsonWithStrFormat(quantDataPacket.toStockMap()));//保存数据到文件,按照股票code组织数据，方便按个股查找所有字段数据
+    }
+
+    public static void demoForCoreApi(String code) throws IOException {
+        XTickCoreApi xTickCoreApi = new XTickCoreApi();
         String field = "x001,x002,x003,x004,x005";
-        String dataStr = xTickQuantApi.getCoreTime(1, code, field, XTickConst.token, MethodType.POST);
+        String dataStr = xTickCoreApi.getCoreTime(1, code, field, XTickConst.token, MethodType.POST);
         Map<String, Object> datas = JsonUtil.jsonToObj(dataStr, Map.class);
         System.out.println(String.format("[core.time]code=%s,size=%s", code, datas == null ? 0 : datas.size()));
 
-        dataStr = xTickQuantApi.getCoreChange(1, LocalDate.now().minusDays(1).toString(), XTickConst.token, MethodType.POST);
+        String startDate = "2025-01-01";
+        String endDate = "2026-12-31";
+        String tradeDate = "2026-01-20";
+        dataStr = xTickCoreApi.getCoreChuQuan(1, code, startDate, endDate, XTickConst.token, MethodType.POST);
         List<XTickStockInfo> stockInfos = JsonUtil.jsonToList(dataStr, XTickStockInfo.class);
-        System.out.println(String.format("[core.change]tradeDate=%s,size=%s", LocalDate.now().minusDays(1).toString(), stockInfos == null ? 0 : stockInfos.size()));
+        System.out.println(String.format("[core.chuquan]startDate=%s,endDate=%s,size=%s", startDate, endDate, stockInfos == null ? 0 : stockInfos.size()));
 
-        dataStr = xTickQuantApi.getQunatData(1, "all", XTickConst.token, MethodType.POST);
-        QuantPacket quantPacket = JsonUtil.jsonToObj(dataStr, QuantPacket.class);
-        System.out.println(String.format("[quant.data]size=%s", quantPacket == null ? 0 : quantPacket.toFieldMap().size()));
+        dataStr = xTickCoreApi.getCoreTingpai(1, code, startDate, endDate, XTickConst.token, MethodType.POST);
+        List<XTickTingPaiStock> tingPaiStocks = JsonUtil.jsonToList(dataStr, XTickTingPaiStock.class);
+        System.out.println(String.format("[core.tingpai]startDate=%s,endDate=%s,size=%s", startDate, endDate, tingPaiStocks == null ? 0 : tingPaiStocks.size()));
 
-//        XTickUtil.toFile("F://quantByField.json", JsonUtil.toJsonWithStrFormat(quantPacket.toFieldMap()));//保存数据到文件,按照指标字段组织数据，方便按字段查找所有股票数据
-//        XTickUtil.toFile("F://quantByStock.json", JsonUtil.toJsonWithStrFormat(quantPacket.toStockMap()));//保存数据到文件,按照股票code组织数据，方便按个股查找所有字段数据
+        dataStr = xTickCoreApi.getCoreSt(1, code, startDate, endDate, XTickConst.token, MethodType.POST);
+        List<XTickStHistory> stStocks = JsonUtil.jsonToList(dataStr, XTickStHistory.class);
+        System.out.println(String.format("[core.st]startDate=%s,endDate=%s,size=%s", startDate, endDate, stStocks == null ? 0 : stStocks.size()));
+
+        dataStr = xTickCoreApi.getCorePrice(1, code, 1, startDate, endDate, XTickConst.token, MethodType.POST);
+        List<XTickStockHistoryPrice> historyPriceInfos = JsonUtil.jsonToList(dataStr, XTickStockHistoryPrice.class);
+        System.out.println(String.format("[core.historyprice]startDate=%s,endDate=%s,size=%s", startDate, endDate, historyPriceInfos == null ? 0 : historyPriceInfos.size()));
+
+        dataStr = xTickCoreApi.getCoreFenbi(1, code, tradeDate, XTickConst.token, MethodType.POST);
+        List<XTickTimeDeal> fenbiDatas = JsonUtil.jsonToList(dataStr, XTickTimeDeal.class);
+        System.out.println(String.format("[core.fenbi]tradeDate=%s,size=%s", tradeDate, fenbiDatas == null ? 0 : fenbiDatas.size()));
+
+        dataStr = xTickCoreApi.getCoreFenjia(1, code, tradeDate, XTickConst.token, MethodType.POST);
+        List<XTickTimePrice> fenjiaDatas = JsonUtil.jsonToList(dataStr, XTickTimePrice.class);
+        System.out.println(String.format("[core.fenjia]tradeDate=%s,size=%s", tradeDate, fenjiaDatas == null ? 0 : fenjiaDatas.size()));
+
+        dataStr = xTickCoreApi.getCoreTransaction(1, code, tradeDate, XTickConst.token, MethodType.POST);
+        List<XTickTransactionCount> transactionDatas = JsonUtil.jsonToList(dataStr, XTickTransactionCount.class);
+        System.out.println(String.format("[core.transaction]tradeDate=%s,size=%s", tradeDate, transactionDatas == null ? 0 : transactionDatas.size()));
     }
 
 
@@ -254,19 +289,19 @@ public class XTickStockApiClient {
         demoForFinancialApi(code);//获取财务数据
         demoForIndicatorApi(code);//获取指标数据
         demoForWatchApi(code);//获取盯盘数据
+        demoForCoreApi(code);//获取核心接口数据
         demoForQuantApi(code);//获取量化数据
     }
 
 
     public static void main(String[] args) throws IOException {
         String batchCodes = "000001,000002,600000";
-        String period = "tick";
+        String period = "lv1";
         String result = new XTickWatchApi().getTickTime(1, batchCodes, period, XTickConst.token, MethodType.POST);
-        Map<String, Tick> ticks = JsonUtil.jsonToObj(result, new TypeReference<Map<String, Tick>>() {
-        });
-        System.out.println(String.format("[tick.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
+        List<XTickLevelOne> levelOnes = JsonUtil.jsonToList(result, XTickLevelOne.class);
+        System.out.println(String.format("[lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, levelOnes == null ? 0 : levelOnes.size()));
 
-        //allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
-        //demoForQuantApi("000001");//获取量化数据
+        allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
+        //demoForWatchApi("000001");//获取核心接口数据
     }
 }

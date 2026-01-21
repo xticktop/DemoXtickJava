@@ -17,20 +17,20 @@ import java.util.Map;
  */
 public class XTickWatchApi {
     /**
-     * 获取沪深京股票交易日盘中实时行情数据，包括tick数据、1分钟数据、日线数据。
+     * 获取沪深京股票交易日盘中实时行情数据，包括买卖五档数据、1分钟数据、日线数据。
      */
     public String getTickTime(int type, String code, String period, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/tick/time";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("period", period).put("zip", true).put("code", code).put("token", token).build();
+        String url = XTickConst.serverUrl + "/doc/order/time";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("period", period).put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
     /**
-     * 获取沪深京股票历史Tick数据
+     * 获取沪深京股票历史买卖五档数据
      */
     public String getTickHistory(int type, String code, String tradeDate, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/tick/history";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
+        String url = XTickConst.serverUrl + "/doc/order/history";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -39,7 +39,7 @@ public class XTickWatchApi {
      */
     public String getBidDetail(int type, String code, String tradeDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bid/detail";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -48,7 +48,7 @@ public class XTickWatchApi {
      */
     public String getBidHistory(int type, String code, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bid/history";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -57,7 +57,7 @@ public class XTickWatchApi {
      */
     public String getBidTime(int type, String code, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bid/time";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -66,7 +66,7 @@ public class XTickWatchApi {
      */
     public String getBidTime(int type, String code, Option option, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/bid/time";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("option", JsonUtil.toJson(option)).put("code", code).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("option", JsonUtil.toJson(option)).put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 }

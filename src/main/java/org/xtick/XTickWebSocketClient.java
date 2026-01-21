@@ -56,8 +56,8 @@ public class XTickWebSocketClient {
         if (Objects.isNull(reason) || !reason.getCloseCode().equals(CloseReason.CloseCodes.NORMAL_CLOSURE)) {
             try {
                 WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-                container.setDefaultMaxBinaryMessageBufferSize(1 * 1024 * 1024);
-                container.setDefaultMaxTextMessageBufferSize(1 * 1024 * 1024);
+                container.setDefaultMaxBinaryMessageBufferSize(5 * 1024 * 1024);
+                container.setDefaultMaxTextMessageBufferSize(512 * 1024);
                 container.setDefaultMaxSessionIdleTimeout(1 * 60 * 60 * 1000L);
                 container.connectToServer(this, endpointURI);
                 XTickUtil.sleepSeconds(3);
@@ -124,17 +124,18 @@ public class XTickWebSocketClient {
      * type代表数据类型，可取枚举值如下：1 3 10 20  代表沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;
      * <p>
      * 最后，总结，大家关注以下枚举值即可
-     * - 000001.SZ - 订阅股票tick数据，按个数订阅。
-     * - bid.1 - 订阅沪深京A股集合竞价期间竞价数据。
-     * - quant.1 - 订阅沪深京A股量化因子数据，数据字段参考《3.7 量化指标接口》。
-     * - tick.SZ.1 - 订阅深交所A股的tick数据。
-     * - tick.SZ.10 - 订阅深交所指数的tick数据。
-     * - tick.SZ.20 - 订阅深交所ETF的tick数据。
-     * - tick.SH.1 - 订阅上交所A股的tick数据。
-     * - tick.SH.10 - 订阅上交所指数的tick数据。
-     * - tick.SH.20 - 订阅上交所ETF的tick数据。
-     * - tick.BJ.1 - 订阅北交所ETF的tick数据。
-     * - tick.HK.3 - 订阅港交所ETF的tick数据。
+     * - 000001.SZ - 订阅股票tick数据，按个数订阅。推送频率为实时。
+     * - bid.1 - 订阅沪深京A股集合竞价期间竞价数据。推送频率为实时。
+     * - quant.data.1 - 订阅沪深京A股量化因子数据，数据字段参考《量化指标接口》。推送频率一分钟
+     * - quant.time.1 - 订阅沪深京A股量化因子数据。推送频率为实时
+     * - tick.SZ.1 - 订阅深交所A股的tick数据。推送频率为实时，联系客服开通。
+     * - tick.SZ.10 - 订阅深交所指数的tick数据。推送频率为实时，联系客服开通。
+     * - tick.SZ.20 - 订阅深交所ETF的tick数据。推送频率为实时，联系客服开通。
+     * - tick.SH.1 - 订阅上交所A股的tick数据。推送频率为实时，联系客服开通。
+     * - tick.SH.10 - 订阅上交所指数的tick数据。推送频率为实时，联系客服开通。
+     * - tick.SH.20 - 订阅上交所ETF的tick数据。推送频率为实时，联系客服开通。
+     * - tick.BJ.1 - 订阅北交所ETF的tick数据。推送频率为实时，联系客服开通。
+     * - tick.HK.3 - 订阅港交所ETF的tick数据。推送频率为实时，联系客服开通。
      * - minute.SZ.1 - 订阅深交所A股的1分钟k线数据，推送频率为实时。
      * - minute.SZ.10 - 订阅深交所指数的1分钟k线数据，推送频率为实时。
      * - minute.SZ.20 - 订阅深交所ETF的1分钟k线数据，推送频率为实时。
@@ -154,7 +155,7 @@ public class XTickWebSocketClient {
     public static void main(String[] args) throws UnsupportedEncodingException {
         //List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH","00001.HK","920001.BJ","000001.SH","510300.SH");
         //List<String> authCodes = ImmutableList.of("bid.1","tick.SZ.1", "tick.SZ.10", "tick.SZ.20",  "tick.SH.1", "tick.SH.10", "tick.SH.20", "tick.BJ.1", "tick.HK.3");
-        List<String> authCodes = ImmutableList.of("minute.SZ.1");//新用户，可以订阅北交所的tick行情数据
+        List<String> authCodes = ImmutableList.of("bid.1", "tick.HK.3", "tick.SZ.1", "quant.time.1");//新用户，可以订阅北交所的tick行情数据
         String user = URLEncoder.encode(JsonUtil.toJson(TickSubcribeInfo.builder().token(XTickConst.token).authCodes(authCodes).build()), StandardCharsets.UTF_8.toString());
         XTickWebSocketClient wsClient = new XTickWebSocketClient(URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
         wsClient.exec();

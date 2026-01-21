@@ -30,7 +30,7 @@ public class XTickMarketApi {
      */
     public String getKlineMarket(int type, String code, String period, String fq, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/kline/market";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("period", period).put("fq", fq).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -38,8 +38,8 @@ public class XTickMarketApi {
      * 提供日内一分钟实时数据，包括盘前9:15-25内竞价阶段数据。
      */
     public String getKlineMinute(int type, String code, String fq, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/kline/market";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("fq", fq).put("token", token).build();
+        String url = XTickConst.serverUrl + "/doc/kline/minute";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("fq", fq).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
@@ -58,7 +58,7 @@ public class XTickMarketApi {
 
     public String getFinancial(int type, String code, String report, String startDate, String endDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/financial";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("zip", true).put("code", code).put("report", report).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("report", report).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 }
