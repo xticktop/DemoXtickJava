@@ -203,7 +203,7 @@ https://github.com/xticktop/xtick <br>
 入参1：authCodes 枚举取值如下： <br>
 场景a、按交易所订阅： <br>
 - bid.1 - 订阅沪深京A股集合竞价期间竞价数据。
-- quant.1 - 订阅沪深京A股量化因子数据，数据字段参考《3.7 量化指标接口》。
+- quant.data.1 - 订阅沪深京A股量化因子数据，数据字段参考《量化指标接口》。
 - tick.SZ.1 - 订阅深交所A股的tick数据。
 - tick.SZ.10 - 订阅深交所指数的tick数据。
 - tick.SZ.20 - 订阅深交所ETF的tick数据。

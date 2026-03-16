@@ -69,4 +69,13 @@ public class XTickWatchApi {
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("option", JsonUtil.toJson(option)).put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
+
+    /**
+     * 按交易日，获取全市场成交额统计，包括科创板、创业板、北证、两市等成交额统计。
+     */
+    public String getAmount(String tradeDate, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/order/amount";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("tradeDate", tradeDate).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
 }

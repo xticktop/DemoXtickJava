@@ -1,6 +1,5 @@
 package org.xtick;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.xtick.api.*;
 import org.xtick.bean.*;
 import org.xtick.bean.base.XTickStockCalendar;
@@ -140,54 +139,60 @@ public class XTickStockApiClient {
 
         List<XTickLevelOne> ticks = JsonUtil.jsonToList(result, XTickLevelOne.class);
 
-        System.out.println(String.format("[lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
+        System.out.println(String.format("[watch.lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, ticks == null ? 0 : ticks.size()));
 
         //全市场的买卖五档实时数据
         result = xTickWatchApi.getTickTime(type, "all", period, XTickConst.token, MethodType.POST);
         ticks = JsonUtil.jsonToList(result, XTickLevelOne.class);
-        System.out.println(String.format("[lv1.time]time=%s,code=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), "all", period, ticks == null ? 0 : ticks.size()));
+        System.out.println(String.format("[watch.lv1.time]time=%s,code=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), "all", period, ticks == null ? 0 : ticks.size()));
 
         //某个交易日的买卖五档历史数据
         result = xTickWatchApi.getTickHistory(type, code, tradeDate.toString(), XTickConst.token, MethodType.POST);
         List<XTickLevelOne> levelOneOfDay = JsonUtil.jsonToList(result, XTickLevelOne.class);
-        System.out.println(String.format("[lv1.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().minusDays(1).format(formatter), code, tradeDate, levelOneOfDay == null ? 0 : levelOneOfDay.size()));
+        System.out.println(String.format("[watch.lv1.history]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().minusDays(1).format(formatter), code, tradeDate, levelOneOfDay == null ? 0 : levelOneOfDay.size()));
 
         //获取竞价实时数据，多个票批量获取，单次最多50个票
         result = xTickWatchApi.getBidTime(type, batchCodes, XTickConst.token, MethodType.POST);
         List<Bid> bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, bids == null ? 0 : bids.size()));
         //获取竞价实时数据，全市场所有票的实时竞价数据
         result = xTickWatchApi.getBidTime(type, "all", XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
         //获取竞价实时数据，全市场所有票的实时竞价数据，支持option参数，按需排序和过滤股票
         //当天全市场股票竞价，按未成交额排序，从大到小，取前100条。
         Option option = Option.builder().asc(0).sort("noe").limit(100).build();
         result = xTickWatchApi.getBidTime(type, "all", option, XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
         //获取竞价实时数据，全市场所有票的实时竞价数据，支持option参数，按需排序和过滤股票
         //当天全市场股票竞价，过滤出来当天竞价涨幅5个点以上且竞价额大于等于1000万的个股，结果数据按未成交额排序，从大到小，取前100条。
         option = Option.builder().filter("jjzf>5;jje>=10000000").asc(0).sort("noe").limit(100).build();
         result = xTickWatchApi.getBidTime(type, "all", option, XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.time]time=%s,code=%s,size=%s", LocalDateTime.now().format(formatter), "all", bids == null ? 0 : bids.size()));
 
 
         //获取竞价历史数据，按单个票（code不支持批量，支持all参数）
         result = xTickWatchApi.getBidHistory(type, code, tradeDate.toString(), tradeDate.plusDays(10).toString(), XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.history]time=%s,code=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tradeDate.plusDays(10).toString(), bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.history]time=%s,code=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tradeDate.plusDays(10).toString(), bids == null ? 0 : bids.size()));
         //获取竞价历史数据，全市场某天的竞价数据（code不支持批量，支持all参数），开始日期和结束日期必须相同
         result = xTickWatchApi.getBidHistory(type, "all", tradeDate.toString(), tradeDate.toString(), XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.history]time=%s,code=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tradeDate.toString(), bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.history]time=%s,code=%s,startDate=%s,endDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, tradeDate.toString(), bids == null ? 0 : bids.size()));
 
 
         //获取竞价阶段所有明细数据
         result = xTickWatchApi.getBidDetail(type, code, tradeDate.toString(), XTickConst.token, MethodType.POST);
         bids = JsonUtil.jsonToList(result, Bid.class);
-        System.out.println(String.format("[bid.detail]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, bids == null ? 0 : bids.size()));
+        System.out.println(String.format("[watch.bid.detail]time=%s,code=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), code, tradeDate, bids == null ? 0 : bids.size()));
+
+        //获取市场成交额实时信息
+        result = xTickWatchApi.getAmount(tradeDate.toString(), XTickConst.token, MethodType.POST);
+        XTickMarketCount xTickMarketCount = JsonUtil.jsonToObj(result, XTickMarketCount.class);
+        System.out.println(String.format("[watch.amount]time=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), tradeDate, xTickMarketCount == null ? 0 : 1));
+
     }
 
     /**
@@ -269,9 +274,13 @@ public class XTickStockApiClient {
         List<XTickTimePrice> fenjiaDatas = JsonUtil.jsonToList(dataStr, XTickTimePrice.class);
         System.out.println(String.format("[core.fenjia]tradeDate=%s,size=%s", tradeDate, fenjiaDatas == null ? 0 : fenjiaDatas.size()));
 
-        dataStr = xTickCoreApi.getCoreTransaction(1, code, tradeDate, XTickConst.token, MethodType.POST);
+        dataStr = xTickCoreApi.getCoreMoney(1, code, tradeDate, LocalDate.now().toString(), XTickConst.token, MethodType.POST);
         List<XTickTransactionCount> transactionDatas = JsonUtil.jsonToList(dataStr, XTickTransactionCount.class);
-        System.out.println(String.format("[core.transaction]tradeDate=%s,size=%s", tradeDate, transactionDatas == null ? 0 : transactionDatas.size()));
+        System.out.println(String.format("[core.money]tradeDate=%s,size=%s", tradeDate, transactionDatas == null ? 0 : transactionDatas.size()));
+
+        dataStr = xTickCoreApi.getCoreBoard(1, 1,LocalDate.now().toString(), XTickConst.token, MethodType.POST);
+        List<XTickStockBoard> xTickStockBoards = JsonUtil.jsonToList(dataStr, XTickStockBoard.class);
+        System.out.println(String.format("[core.board]tradeDate=%s,size=%s", tradeDate, xTickStockBoards == null ? 0 : xTickStockBoards.size()));
     }
 
 
@@ -296,12 +305,14 @@ public class XTickStockApiClient {
 
     public static void main(String[] args) throws IOException {
         String batchCodes = "000001,000002,600000";
+        String code = "000001";
+
         String period = "lv1";
         String result = new XTickWatchApi().getTickTime(1, batchCodes, period, XTickConst.token, MethodType.POST);
         List<XTickLevelOne> levelOnes = JsonUtil.jsonToList(result, XTickLevelOne.class);
         System.out.println(String.format("[lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, levelOnes == null ? 0 : levelOnes.size()));
 
-        allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
-        //demoForWatchApi("000001");//获取核心接口数据
+        //allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
+        demoForWatchApi("000001");//获取核心接口数据
     }
 }
