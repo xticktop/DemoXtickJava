@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface XTickConst {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    String token = "123456";//登录XTick官网，获取token
+    String token = "123456789";//登录XTick官网，获取token
     String serverUrl = "http://api.xtick.top/";
 
     Set<String> reports = ImmutableSet.<String>builder()//财务报表

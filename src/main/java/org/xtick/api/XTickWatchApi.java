@@ -78,4 +78,13 @@ public class XTickWatchApi {
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("tradeDate", tradeDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
+
+    /**
+     * 龙虎榜详情历史数据。盘后获取。
+     */
+    public String getLonghubang(String tradeDate, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/order/longhubang";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("tradeDate", tradeDate).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
 }

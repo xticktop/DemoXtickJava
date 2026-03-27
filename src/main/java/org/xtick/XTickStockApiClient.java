@@ -6,6 +6,7 @@ import org.xtick.bean.base.XTickStockCalendar;
 import org.xtick.bean.base.XTickStockInfo;
 import org.xtick.bean.core.*;
 import org.xtick.bean.finance.*;
+import org.xtick.bean.hot.XTickNewsInfo;
 import org.xtick.constant.MethodType;
 import org.xtick.constant.XTickConst;
 import org.xtick.util.JsonUtil;
@@ -193,6 +194,11 @@ public class XTickStockApiClient {
         XTickMarketCount xTickMarketCount = JsonUtil.jsonToObj(result, XTickMarketCount.class);
         System.out.println(String.format("[watch.amount]time=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), tradeDate, xTickMarketCount == null ? 0 : 1));
 
+        //获取龙虎榜详情历史数据
+        result = xTickWatchApi.getLonghubang(tradeDate.minusDays(1).toString(), XTickConst.token, MethodType.POST);
+        List<XTickLonghubang> xTickLonghubangs = JsonUtil.jsonToList(result, XTickLonghubang.class);
+        System.out.println(String.format("[watch.longhubang]time=%s,tradeDate=%s,size=%s", LocalDateTime.now().format(formatter), tradeDate, xTickLonghubangs == null ? 0 : 1));
+
     }
 
     /**
@@ -273,14 +279,28 @@ public class XTickStockApiClient {
         dataStr = xTickCoreApi.getCoreFenjia(1, code, tradeDate, XTickConst.token, MethodType.POST);
         List<XTickTimePrice> fenjiaDatas = JsonUtil.jsonToList(dataStr, XTickTimePrice.class);
         System.out.println(String.format("[core.fenjia]tradeDate=%s,size=%s", tradeDate, fenjiaDatas == null ? 0 : fenjiaDatas.size()));
+    }
 
-        dataStr = xTickCoreApi.getCoreMoney(1, code, tradeDate, LocalDate.now().toString(), XTickConst.token, MethodType.POST);
+
+
+    public static void demoForHotApi(String code) throws IOException {
+        XTickHotApi xTickHotApi = new XTickHotApi();
+        String tradeDate = LocalDate.now().toString();
+        String dataStr = xTickHotApi.getHotMoney(1, code, tradeDate, LocalDate.now().toString(), XTickConst.token, MethodType.POST);
         List<XTickTransactionCount> transactionDatas = JsonUtil.jsonToList(dataStr, XTickTransactionCount.class);
-        System.out.println(String.format("[core.money]tradeDate=%s,size=%s", tradeDate, transactionDatas == null ? 0 : transactionDatas.size()));
+        System.out.println(String.format("[hot.money]tradeDate=%s,size=%s", tradeDate, transactionDatas == null ? 0 : transactionDatas.size()));
 
-        dataStr = xTickCoreApi.getCoreBoard(1, 1,LocalDate.now().toString(), XTickConst.token, MethodType.POST);
+        dataStr = xTickHotApi.getHotBoard(1, 1,LocalDate.now().toString(), XTickConst.token, MethodType.POST);
         List<XTickStockBoard> xTickStockBoards = JsonUtil.jsonToList(dataStr, XTickStockBoard.class);
-        System.out.println(String.format("[core.board]tradeDate=%s,size=%s", tradeDate, xTickStockBoards == null ? 0 : xTickStockBoards.size()));
+        System.out.println(String.format("[hot.board]tradeDate=%s,size=%s", tradeDate, xTickStockBoards == null ? 0 : xTickStockBoards.size()));
+
+        dataStr = xTickHotApi.getHotNews(30, LocalDate.now().toString(), XTickConst.token, MethodType.POST);
+        List<XTickNewsInfo> xTickNewsInfos = JsonUtil.jsonToList(dataStr, XTickNewsInfo.class);
+        System.out.println(String.format("[hot.news]tradeDate=%s,size=%s", tradeDate, xTickNewsInfos == null ? 0 : xTickNewsInfos.size()));
+
+        dataStr = xTickHotApi.getHotTimekline(1, "000001", XTickConst.token, MethodType.POST);
+        List<Minute> xTickMinutes = JsonUtil.jsonToList(dataStr, Minute.class);
+        System.out.println(String.format("[hot.timekline]tradeDate=%s,size=%s", tradeDate, xTickMinutes == null ? 0 : xTickMinutes.size()));
     }
 
 
@@ -299,6 +319,7 @@ public class XTickStockApiClient {
         demoForIndicatorApi(code);//获取指标数据
         demoForWatchApi(code);//获取盯盘数据
         demoForCoreApi(code);//获取核心接口数据
+        demoForHotApi(code);//获取短线热点数据
         demoForQuantApi(code);//获取量化数据
     }
 
@@ -313,6 +334,6 @@ public class XTickStockApiClient {
         System.out.println(String.format("[lv1.time]time=%s,batchCodes=%s,period=%s,size=%s", LocalDateTime.now().format(formatter), batchCodes, period, levelOnes == null ? 0 : levelOnes.size()));
 
         //allDemo();//所有API接口的Demo示例,会调用所有接口，因此调用API接口次数多，请按需调用
-        demoForWatchApi("000001");//获取核心接口数据
+        demoForHotApi("000001");//获取核心接口数据
     }
 }

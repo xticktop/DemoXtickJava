@@ -89,34 +89,6 @@ public class XTickCoreApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    /**
-     * 获取沪深京股票交易日盘中资金流数据。盘中实时更新。
-     * 资金区分标准如下：
-     * 特大单：成交金额大于或等于100万元或成交量大于或等于5000手
-     * 大单：成交金额大于或等于20万元或成交量大于或等于1000手
-     * 中单：成交金额大于或等于4万元或成交量大于或等于200手
-     * 小单：其它为小单
-     */
-    public String getCoreMoney(int type, String code, String startDate, String endDate, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/core/money";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-
-    /**
-     * 获取沪深京股票交易日盘中盘中涨停、跌停、炸板数据。盘中实时更新。
-     * flag ，枚举取值如下：
-     * - 1 - 涨停
-     * - 2 - 跌停
-     * - 3 - 炸板
-     */
-    public String getCoreBoard(int type, int flag, String tradeDate, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/core/board";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("flag", flag).put("tradeDate", tradeDate).put("token", token).build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
 
     /**
      * 提供交易日当天全市场增量数据的更新。这个接口单次获取数据量大，请不要频繁获取，该接口严格限流。

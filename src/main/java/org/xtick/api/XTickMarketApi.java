@@ -35,7 +35,7 @@ public class XTickMarketApi {
     }
 
     /**
-     * 提供日内一分钟实时数据，包括盘前9:15-25内竞价阶段数据。
+     * 提供日内一分钟实时数据，
      */
     public String getKlineMinute(int type, String code, String fq, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/kline/minute";
