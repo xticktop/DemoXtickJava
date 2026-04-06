@@ -34,14 +34,6 @@ public class XTickWatchApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    /**
-     * 开盘竞价阶段，个股的所有竞价信息。当天竞价完成后，9:25更新完数据。
-     */
-    public String getBidDetail(int type, String code, String tradeDate, String token, MethodType method) throws IOException {
-        String url = XTickConst.serverUrl + "/doc/bid/detail";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
 
     /**
      * 获取沪深京股票的历史竞价数据

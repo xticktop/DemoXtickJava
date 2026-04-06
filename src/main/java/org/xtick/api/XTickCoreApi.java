@@ -89,6 +89,14 @@ public class XTickCoreApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
+    /**
+     * 开盘竞价阶段，个股的所有竞价信息。当天竞价完成后，9:25更新完数据。
+     */
+    public String getBidDetail(int type, String code, String tradeDate, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/core/biddetail";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("tradeDate", tradeDate).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
 
     /**
      * 提供交易日当天全市场增量数据的更新。这个接口单次获取数据量大，请不要频繁获取，该接口严格限流。

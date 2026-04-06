@@ -53,7 +53,7 @@ public class XTickHotApi {
      * minutes取值为0，按按照tradeDate参数，获取历史数据。
      * 参数2：tradeDate 时间范围，若需要获取历史数据，则需要将minutes设置为0。
      */
-    public String getHotNews(int minutes,String tradeDate, String token, MethodType method) throws IOException {
+    public String getHotNews(int minutes, String tradeDate, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/hot/news";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("minutes", minutes).put("tradeDate", tradeDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
@@ -62,9 +62,40 @@ public class XTickHotApi {
     /**
      * 获取股票盘中日内分时数据，保留了价格在每个时间点的变化细节，股价全天的波动轨迹。盘中实时更新。
      */
-    public String getHotTimekline(int type, String code,String token, MethodType method) throws IOException {
+    public String getHotTimekline(int type, String code, String token, MethodType method) throws IOException {
         String url = XTickConst.serverUrl + "/doc/hot/timekline";
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
+     * 获取概念板块、地域板块、行业板块数据，以及概念板块下对应的成分股数据。
+     * symbol 用于表示要获取的概念板块的分类，枚举取值如下：
+     * - sw1 - 申万一级行业划分
+     * - sw2 - 申万二级行业划分
+     * - sw3 - 申万三级行业划分
+     * - zjh1 -  证监会一级行业划分
+     * - zjh2 -  证监会二级行业划分
+     * - ahy - A平台行业划分
+     * - afg - A平台风格划分
+     * - agn - A平台概念划分
+     * - bgn - B平台概念划分
+     * - bdy1 - B平台一级地域划分
+     * - bdy1 - B平台二级地域划分
+     * - cgn -  C平台概念划分
+     */
+    public String getHotBk(String symbol, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/hot/bk";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("symbol", symbol).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
+     * 获取个股关联的概念板块、地域板块、行业板块数据。
+     */
+    public String getHotGainian(String code, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/hot/gainian";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("code", code).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
