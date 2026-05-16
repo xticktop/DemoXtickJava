@@ -1,4 +1,4 @@
-# XTick
+# XTick Java SDK
 
 <p align=center>
   <a href="http://www.xtick.top/">
@@ -7,19 +7,25 @@
 </p>
 
 <p align=center>
-   XTick提供实时行情报价数据接入解决方案。
+   XTick提供实时行情报价数据接入解决方案 - Java版本SDK
 </p>
 
 ## 项目介绍
 
-XTick行情API提供了全面、准确、稳定的行情数据，帮助开发者和研究者构建创新的交易和分析工具，满足金融行业的需求，进行深入的市场分析和模型验证。
-<br>您的支持，是我们继续维护好XTick项目的动力。<br>
-XTick官网：http://www.xtick.top <br>
-<p align=center>
-  <a href="http://www.xtick.top/">
-    <img src="./doc/images/xtick.png" alt="实时行情报价数据接口">
-  </a>
-</p>
+XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、准确、稳定的行情数据接入能力。本SDK基于Java语言开发，支持HTTP REST API和WebSocket实时推送两种方式，帮助开发者和研究者快速构建创新的交易和分析工具。
+
+**主要特性：**
+- 🚀 支持实时行情数据推送（WebSocket）
+- 📊 提供完整的K线数据查询（多周期、复权支持）
+- 💹 丰富的技术指标计算（MACD、KDJ、RSI等100+指标）
+- 💰 财务数据查询（资产负债表、利润表、现金流量表等）
+- 🔥 热点数据追踪（龙虎榜、市场情绪、板块概念）
+- ⚡ 量化因子数据（47个量化指标字段）
+- 🔄 支持数据全推和按需订阅
+
+**官方网站：** http://www.xtick.top  
+**GitHub地址：** https://github.com/xticktop/xtick  
+**Gitee地址：** https://gitee.com/xtick
 
 ## 已接入数据预览
 
@@ -184,364 +190,497 @@ XTick官网：http://www.xtick.top <br>
 </tbody>
 </table>
 
-
 ## API接口文档
 
-API接口分为订阅数据、行情数据、财务数据、金融指标数据四个部分。行情数据支持盘中实时更新。 <br>
-除了订阅接口是Websocket API，其余接口为Http API接口且均支持GET和POST方法，下面以GET请求示例。 <br>
+XTick Java SDK提供了完整的API接口封装，主要分为以下几个模块：
 
-2.1 订阅数据接口 <br>
-在GitHub上，已实现Java版本和Python版本的订阅代码，请先下载代码直接调用。 <br>
-GitHub代码下载地址： <br>
-https://github.com/xticktop/xtick <br>
+### 核心类说明
 
-订阅数据按照证券交易所订阅推送，包括上交所、深交所、北交所、港交所（只支持部分股票）。 <br>
-数据为实时推送，发数据非常快，客户端接受到数据后，最好做异步处理，将接受数据和数据处理分开，避免接受数据阻塞。切记...切记...切记：数据接受和数据处理，务必放在两个线程中，不要阻塞数据接受。
+- **XTickStockApiClient** - HTTP API客户端主类，提供所有REST API接口的示例调用
+- **XTickWebSocketClient** - WebSocket实时数据推送客户端
+- **XTickMarketApi** - 行情数据API（K线、股票信息、交易日历等）
+- **XTickIndicatorApi** - 技术指标API（100+金融指标计算）
+- **XTickWatchApi** - 盯盘数据API（五档行情、龙虎榜、市场情绪等）
+- **XTickCoreApi** - 核心数据API（分时成交、分价表、竞价数据等）
+- **XTickHotApi** - 热点数据API（板块概念、资金流向、新闻舆情等）
+- **XTickQuantApi** - 量化数据API（47个量化因子字段）
 
-2.1.1 订阅接口 <br>
-订阅数据：订阅为Websocket API，请在Github上下载开源项目，参考XTickWebSocketClient.java中已实现的订阅功能。 <br>
-入参1：authCodes 枚举取值如下： <br>
-场景a、按交易所订阅： <br>
-- bid.1 - 订阅沪深京A股集合竞价期间竞价数据。
-- quant.data.1 - 订阅沪深京A股量化因子数据，数据字段参考《量化指标接口》。
-- tick.SZ.1 - 订阅深交所A股的tick数据。
-- tick.SZ.10 - 订阅深交所指数的tick数据。
-- tick.SZ.20 - 订阅深交所ETF的tick数据。
-- tick.SH.1 - 订阅上交所A股的tick数据。
-- tick.SH.10 - 订阅上交所指数的tick数据。
-- tick.SH.20 - 订阅上交所ETF的tick数据。
-- tick.BJ.1 - 订阅北交所ETF的tick数据。
-- tick.HK.3 - 订阅港交所ETF的tick数据。
-- minute.SZ.1 - 订阅深交所A股的1分钟k线数据，推送频率为实时。
-- minute.SZ.10 - 订阅深交所指数的1分钟k线数据，推送频率为实时。
-- minute.SZ.20 - 订阅深交所ETF的1分钟k线数据，推送频率为实时。
-- minute.SH.1 - 订阅上交所A股的1分钟k线数据，推送频率为实时。
-- minute.SH.10 - 订阅上交所指数的1分钟k线数据，推送频率为实时。
-- minute.SH.20 - 订阅上交所ETF的1分钟k线数据，推送频率为实时。
-- minute.BJ.1 - 订阅北交所A股的1分钟k线数据，推送频率为实时。
-- minute.HK.3 - 订阅港交所港股的1分钟k线数据，推送频率为实时。
-- kline.1m.1 - 订阅沪深京A股的1分钟k线数据，推送频率为一分
-- kline.1m.10 - 订阅沪深京指数的1分钟k线数据，推送频率为一分钟。
-- kline.1m.20 - 订阅沪深京ETF的1分钟k线数据，推送频率为一分钟。
-- kline.1m.3- 订阅港股的1分钟k线数据，推送频率为一分钟。
+### 接口分类
 
-  场景b、按个股订阅
-- 000001.SZ - 订阅深交所平安银行000001的tick数据。支持按股票个数订阅，包括沪深京港四个交易所的股票，最多订阅50个。
-  入参2：token 登录XTick网站，注册获取
+#### 1. WebSocket订阅接口
 
-2.1.2 查询订阅
-1. 请求方法：
-   http://api.xtick.top/doc/unsubscribe?token=043fbdcba7f3f3ab332ffff123456789
-   入参1：token 登录XTick网站，注册获取
+**重要提示：** 数据接受和数据处理务必放在两个线程中，不要阻塞数据接受！
 
-2.1.3 取消订阅
-1. 请求方法：
-   http://api.xtick.top/doc/querysubscribe?token=043fbdcba7f3f3ab332ffff123456789
-   入参1：token 登录XTick网站，注册获取
+订阅方式分为两种场景：
 
-2.2 行情数据接口
+**场景A：按交易所订阅**
 
-在GitHub上，已实现Java版本和Python版本的代码，请先下载代码直接调用。 <br>
+| 订阅代码 | 说明 | 推送频率 |
+|---------|------|----------|
+| `bid.1` | 沪深京A股集合竞价期间竞价数据 | 实时 |
+| `quant.data.1` | 沪深京A股量化因子数据 | 1分钟 |
+| `quant.time.1` | 沪深京A股量化因子数据 | 实时 |
+| `tick.SZ.1` | 深交所A股的tick数据 | 实时 |
+| `tick.SZ.10` | 深交所指数的tick数据 | 实时 |
+| `tick.SZ.20` | 深交所ETF的tick数据 | 实时 |
+| `tick.SH.1` | 上交所A股的tick数据 | 实时 |
+| `tick.SH.10` | 上交所指数的tick数据 | 实时 |
+| `tick.SH.20` | 上交所ETF的tick数据 | 实时 |
+| `tick.BJ.1` | 北交所A股的tick数据 | 实时 |
+| `tick.HK.3` | 港交所港股的tick数据 | 实时 |
+| `minute.SZ.1` | 深交所A股的1分钟k线数据 | 实时 |
+| `minute.SZ.10` | 深交所指数的1分钟k线数据 | 实时 |
+| `minute.SZ.20` | 深交所ETF的1分钟k线数据 | 实时 |
+| `minute.SH.1` | 上交所A股的1分钟k线数据 | 实时 |
+| `minute.SH.10` | 上交所指数的1分钟k线数据 | 实时 |
+| `minute.SH.20` | 上交所ETF的1分钟k线数据 | 实时 |
+| `minute.BJ.1` | 北交所A股的1分钟k线数据 | 实时 |
+| `minute.HK.3` | 港交所港股的1分钟k线数据 | 实时 |
+| `kline.1m.1` | 沪深京A股的1分钟k线数据 | 1分钟 |
+| `kline.1m.10` | 沪深京指数的1分钟k线数据 | 1分钟 |
+| `kline.1m.20` | 沪深京ETF的1分钟k线数据 | 1分钟 |
+| `kline.1m.3` | 港股的1分钟k线数据 | 1分钟 |
 
-1. 请求方法：
-   请求地址：http://api.xtick.top/doc/market?type=1&code=000001&period=1d&fq=none&startDate=2025-03-25&endDate=2025-03-25&token=043fbdcba7f3f3ab332ffff123456789
-   备注：行情数据支持交易日内盘内实时更新，如有需要其他K线数据，比如三分钟k线或者2小时K线等，可联系作者。<br>
-   入参1：type 股票类别 <br>
-   沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20;<br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001 <br>
-   入参3：period 用于表示要获取的周期，枚举取值如下： <br>
-- 1m - 1分钟线
-- 5m - 5分钟线
-- 15m - 15分钟线
-- 30m - 30分钟线
-- 1h - 1小时线
-- 1d - 日线
-- 1w - 周线
-- 1mon - 月线
-- 1q - 季度线
-- 1hy - 半年线
-- 1y - 年线
-  参数4：fq 除权方式，用于K线数据复权计算，枚举取值如下： <br>
-- none 不复权
-- front 前复权
-- back 后复权
-- front_ratio 等比前复权
-- back_ratio 等比后复权
-  <br>参数5：时间范围，用于指定数据请求范围，表示的范围是[startDate , endDate]区间（包含前后边界）。 <br>
-  特别说明： <br>
-  period为分钟类型（包括1m、5m、15m、30m、1h），则单次请求时间跨度最大为一月，即endDate - startDate不超过30天。
-  如果需要获取盘中实时行情数据，endDate参数填写当天交易日日期即可。
-- startDate - 起始时间，日期格式：2025-03-25
-- endDate- 结束时间，日期格式：2025-03-25
+**场晦B：按个股订阅**
 
-  历史数据说明： <br>
-  分钟级别数据：2024年4月-至今 <br>
-  日线级别数据：公司上市-至今 <br>
+- 格式：`股票代码.市场代码`，例如：`000001.SZ`、`600000.SH`
+- 支持最多50个股票同时订阅
+- 推送频率：实时
 
-  入参6：token 登录XTick网站，注册获取<br>
-  注意：如果需要盘后获取当天全市场股票日线数据，将code设置为all，startDate和endDate日期设置为当前交易日，调用接口接口。
+**使用示例：**
 
-2.3 财务数据接口 <br>
+```java
+import org.xtick.XTickWebSocketClient;
+import com.google.common.collect.ImmutableList;
+import java.util.List;
 
-在GitHub上，已实现Java版本和Python版本的代码，请先下载代码直接调用。 <br>
+public class WebSocketDemo {
+    public static void main(String[] args) throws Exception {
+        // 订阅多个股票的tick数据
+        List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH");
+        
+        // 或者订阅全市场数据
+        // List<String> authCodes = ImmutableList.of("tick.SZ.1", "tick.SH.1");
+        
+        String user = URLEncoder.encode(
+            JsonUtil.toJson(TickSubcribeInfo.builder()
+                .token(XTickConst.token)
+                .authCodes(authCodes)
+                .build()), 
+            StandardCharsets.UTF_8.toString());
+        
+        XTickWebSocketClient wsClient = new XTickWebSocketClient(
+            URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
+        wsClient.exec();
+    }
+}
+```
 
-1. 请求方法：
-   请求地址：http://api.xtick.top/doc/financial?type=1&code=000001&report=Pershareindex&startDate=2020-03-25&endDate=2025-03-25&token=043fbdcba7f3f3ab332ffff123456789
-   入参1：type 股票类别<br>
-   沪深京A股type=1，港股type=3;<br>
-   入参2：code 股票代码<br>
-   比如平安银行为000001<br>
+#### 2. 行情数据接口 (XTickMarketApi)
 
-   入参3：report 用于表示要获取的财务报表，枚举取值如下： <br>
-- Balance - 资产负债表，数据范围：公司上市-至今
-- Income - 利润表，数据范围：公司上市-至今
-- CashFlow - 现金流量表，数据范围：1997年-至今
-- Capital - 股本表，数据范围：公司上市-至今
-- Holdernum - 股东数，数据范围：2001年-至今
-- Top10holder - 十大股东，数据范围：公司上市-至今
-- Top10flowholder - 十大流通股东，数据范围：2004年-至今
-- Pershareindex - 每股指标，数据范围：2007年-至今<br>
-  参数4：时间范围，用于指定数据请求范围，表示的范围是[startDate , endDate]区间（包含前后边界）。<br>
-- startDate - 起始时间，日期格式：2025-03-25
-- endDate- 结束时间，日期格式：2025-04-25 <br>
-  入参5：token 登录XTick网站，注册获取 <br>
+**获取K线数据**
 
-2.4 金融指标接口
+```java
+XTickMarketApi marketApi = new XTickMarketApi();
 
-1、金融指标API接口文档<br>
-所有指标接口的清单，请点击访问：金融指标API文档    http://www.xtick.top/indicator <br>
+// 参数说明：
+// type: 股票类别 (1=沪深京A股, 3=港股, 10=沪深指数, 20=沪深ETF)
+// code: 股票代码
+// period: K线周期 (1m/5m/15m/30m/1h/1d/1w/1mon/1q/1hy/1y)
+// fq: 除权方式 (none/front/back/front_ratio/back_ratio)
+// startDate: 起始日期 (yyyy-MM-dd)
+// endDate: 结束日期 (yyyy-MM-dd)
+String result = marketApi.getKlineMarket(
+    1, "000001", "1d", "front", 
+    "2025-01-01", "2025-12-31", 
+    token, MethodType.POST);
 
-2、通用参数
-如以下参数，请参考行情数据接口中的定义。<br>
+List<XTickKlineData> klines = JsonUtil.jsonToList(result, XTickKlineData.class);
+```
 
-- type：股票类别。
-- code：股票代码。
-- period：k线周期。
-- fq：除权方式。
-- startDate：起始时间。
-- endDate：结束时间。
-- token：令牌
-  3、扩展参数<br>
-  参数名：scale<br>
-  默认值为3，取值范围[1-10]，取值含义：数值代表返回值的精度（保留几位小数位）。<br>
-  参数名：round<br>
-  默认值为1，取值范围[0-7]，取值含义：<br>
--   0 ROUND_UP模式，四舍五入
--   1 ROUND_DOWN模式，截断
--   2 ROUND_CEILING模式
--   3 ROUND_FLOOR模式
--   4 ROUND_HALF_UP模式
--   5 ROUND_HALF_DOWN模式
--   6 ROUND_HALF_EVEN模式
--   7 ROUND_UNNECESSARY模式
-  可参考说明 BigDecimal精确的数值计算
+**获取实时分钟数据**
 
-  4、金融指标验证 <br>
-  尽最大可能，将尽可能多的金融指标数据进行验证，也欢迎大家参与验证。 <br>
-1. 量化指标之KDJ公式验证-CSDN博客 <br>
-2. 量化指标之MACD公式验证-CSDN博客 <br>
+```java
+// 获取当天实时1分钟K线数据
+String result = marketApi.getKlineMinute(1, "000001", "front", token, MethodType.POST);
+```
 
-2.5 盯盘数据接口
-2.5.1 竞价数据-实时接口 <br>
-获取沪深京股票交易日盘中实时竞价数据，竞价时间段：9:15-9:25。每次调用接口返回最新竞价数据。 <br>
+**获取股票列表**
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/bid/time?type=1&code=000001&token=043fbdcba7f3f3ab332ffff123456789
-   入参1：type 股票类别 <br>
-   这里目前只支持沪深京A股的竞价数据，type设置为1。 <br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001。 <br>
-   这里支持批量参数 <br>
-   a、code取值为000001，表示获取股票000001的竞价数据。 <br>
-   b、code取值为000001,000002,600000，表示获取这三个票的竞价数据，多个票直接用英文逗号分割，最多50个股票。 <br>
-   a、code取值为all，表示获取全市场股票的竞价数据。 <br>
-   入参3：token 登录XTick网站，注册获取。 <br>
-   入参4：option 可选参数，为json字符串。如果不需要过滤和排序功能，可以忽略该参数 <br>
-   String filter; //定义筛选条件 <br>
-   String sort; //定义排序字段 <br>
-   int asc; //定义排序方式 0:降序 1:升序 <br>
-   int limit = 10000;//定义截取长度 <br>
-   比如常见的两种场景： <br>
-   场景一：当天全市场股票竞价，按未成交额排序，从大到小，取前100条。 <br>
-   {"sort":"noe","asc":0,"limit":100} <br>
-   场景二：当天全市场股票竞价，过滤出来当天竞价涨幅5个点以上且竞价额大于等于1000万的个股，结果数据按未成交额排序，从大到小，取前100条。 <br>
-   {"filter":"jjzf>5;jje>=10000000","sort":"noe","asc":0,"limit":100} <br>
+```java
+// symbol可选值：all/sz/sh/bj/hk/index/cyb/kcb/etf/st/ts
+String result = marketApi.getStockInfo("sz", token, MethodType.POST);
+List<XTickStockInfo> stocks = JsonUtil.jsonToList(result, XTickStockInfo.class);
+```
 
-2.5.2 竞价数据-历史接口
+**获取交易日历**
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/bid/history?type=1&code=000001&startDate=2025-03-25&endDate=2026-03-25&token=043fbdcba7f3f3ab332ffff123456789
-   <br>入参1：type 股票类别 <br>
-   这里目前只支持沪深京A股的竞价数据，type设置为1。 <br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001 <br>
-   这里支持以下批量参数 <br>
-   a、code取值为000001，表示获取股票000001的竞价数据。注意这里不支持多个股票 <br>
-   b、code取值为all，startDate和endDate必须是同一天，表示获取某个交易日内的全市场股票的竞价数据。 <br>
-   <br> 参数3：时间范围，用于指定数据请求范围，表示的范围是[startDate , endDate]区间（包含前后边界）。、竞价历史数据范围：2025年11月-至今
-   特别说明： <br>
+```java
+String result = marketApi.getCalendar(
+    "000001", "2025-01-01", "2025-12-31", 
+    token, MethodType.POST);
+List<XTickStockCalendar> calendars = JsonUtil.jsonToList(result, XTickStockCalendar.class);
+```
 
-- startDate - 起始时间，日期格式：2025-03-25 <br>
-- endDate- 结束时间，日期格式：2025-03-25 <br>
-  入参4：token 登录XTick网站，注册获取 <br>
+#### 3. 技术指标接口 (XTickIndicatorApi)
 
-2.5.3 竞价数据-详情接口
+支持100+金融技术指标计算，包括：
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/bid/detail?type=1&code=000001&tradeDate=2025-03-25&token=043fbdcba7f3f3ab332ffff123456789
-   <br>入参1：type 股票类别 <br>
-   这里目前只支持沪深京A股的竞价数据，type设置为1。 <br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001，不支持批量参数。 <br>
-   参数3：tradeDate 交易日期，日期格式：2025-10-28。 <br>
-   竞价详细历史数据范围：2025年4月-至今，只能通过接口调用最近半年数据。 <br>
-   入参4：token 登录XTick网站，注册获取 <br>
+**常用指标示例：**
 
-2.5.4 Tick数据-实时接口
+```java
+XTickIndicatorApi indicatorApi = new XTickIndicatorApi();
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/tick/time?type=1&code=000001&period=tick&token=043fbdcba7f3f3ab332ffff123456789
-   <br>入参1：type 股票类别 <br>
-   这里目前只支持沪深京A股的Tick数据，type设置为1。 <br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001。 <br>
-   这里支持批量参数 <br>
-   a、code取值为000001，表示获取股票000001的竞价数据。 <br>
-   b、code取值为000001,000002,600000，表示获取这三个票的竞价数据，多个票直接用英文逗号分割，最多50个股票。 <br>
-   a、code取值为all，表示获取全市场股票的竞价数据。 <br>
-  入参3：period 用于表示要获取的周期，枚举取值如下： <br>
-- tick - tick数据 <br>
-- 1d - 日线数据 <br>
-  入参4：token 登录XTick网站，注册获取 <br>
+// MACD指标
+String result = indicatorApi.macd(
+    1, "000001", "1d", "front",
+    "2025-01-01", "2025-12-31",
+    token, 
+    2,   // inReal: 2=收盘价
+    12,  // optInFastPeriod
+    26,  // optInSlowPeriod
+    9,   // optInSignalPeriod
+    MethodType.POST);
 
-2.5.5 Tick数据-历史接口
+// KDJ指标 (STOCH)
+result = indicatorApi.stoch(
+    1, "000001", "1d", "front",
+    "2025-01-01", "2025-12-31",
+    token,
+    9,  // optInFastK_Period
+    5,  // optInSlowK_Period
+    2,  // optInSlowK_MAType (2=EMA)
+    5,  // optInSlowD_Period
+    2,  // optInSlowD_MAType (2=EMA)
+    MethodType.POST);
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/tick/history?type=1&code=000001&tradeDate=2025-10-25&token=043fbdcba7f3f3ab332ffff123456789
-   <br>入参1：type 股票类别 <br>
-   这里目前只支持沪深京A股的竞价数据，type设置为1。 <br>
-   入参2：code 股票代码 <br>
-   比如平安银行为000001，不支持批量参数。 <br>
-   参数3：tradeDate 交易日期，日期格式：2025-10-28。 <br>
-   Tick历史数据范围：2025年2月-至今，只能通过接口调用最近半年数据。 <br>
-   入参4：token 登录XTick网站，注册获取 <br>
+// RSI指标
+result = indicatorApi.rsi(
+    1, "000001", "1d", "front",
+    "2025-01-01", "2025-12-31",
+    token,
+    2,   // inReal: 2=收盘价
+    14,  // optInTimePeriod
+    MethodType.POST);
+```
+
+**支持的指标列表（部分）：**
+
+- **趋势指标：** ADX, ADXR, APO, AROON, MACD, MACDEXT, PPO, TRIX等
+- **震荡指标：** CCI, CMO, MFI, RSI, STOCH, STOCHF, WILLR等
+- **成交量指标：** AD, ADOSC, OBV, MFI等
+- **价格指标：** AVGPRICE, MEDPRICE, TYPPRICE, WCLPRICE等
+- **希尔伯特变换：** HTDCPERIOD, HTDCPHASE, HTPHASOR, HTSINE等
+- **其他指标：** BOP, DX, MOM, PLUSDI, MINUSDI, ROC, ROCP等
+
+详细指标文档请访问：http://www.xtick.top/indicator
+
+#### 4. 财务数据接口 (XTickMarketApi)
+
+```java
+XTickMarketApi marketApi = new XTickMarketApi();
+
+// 股东数
+String result = marketApi.getHolderNum("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
+
+// 财务指标
+result = marketApi.getCoreFinancial("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
+
+// 十大股东
+result = marketApi.getTopHolder("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
+
+// 十大流通股东
+result = marketApi.getTopFlowHolder("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
+```
+
+**财务报表类型：**
+
+- Balance - 资产负债表
+- Income - 利润表
+- CashFlow - 现金流量表
+- Capital - 股本表
+- Holdernum - 股东数
+- Top10holder - 十大股东
+- Top10flowholder - 十大流通股东
+- Pershareindex - 每股指标
+
+#### 5. 盯盘数据接口 (XTickWatchApi)
+
+```java
+XTickWatchApi watchApi = new XTickWatchApi();
+
+// 买卖五档-实时数据
+String result = watchApi.getFiveLevel(1, "000001", token, MethodType.POST);
+
+// 分钟K线-实时数据
+result = watchApi.getOrderMinute(1, "000001", "1", token, MethodType.POST);
+
+// 日K线-实时数据
+result = watchApi.getOrderDay(1, "000001", "1", token, MethodType.POST);
 
 
+// 获取龙虎榜详情
+result = watchApi.getLonghubang("2025-01-15", token, MethodType.POST);
 
-2.6 量化指标接口<br>
-2.6.1 量化指标-实时接口<br>
-获取沪深京股票交易日盘中实时指标数据，包括涨速、换手率、市盈率、市净率等。支持数据全推。<br>
-1. 请求方法<br>
-   请求地址：http://api.xtick.top/doc/quant/data?type=1&token=e32341ef236299b3e8fd14123456789&field=x001,x002,x003,x004,x005,x006,x007,x008,x009,x010<br>
-   入参1：type 股票类别<br>
-   这里目前只支持沪深京A股的竞价数据，type设置为1。<br>
-   入参2：field 需要返回字段<br>
-   多个字段之间用英文逗号分割，单次请求不超过10个字段。<br>
-   入参3：token 登录XTick网站，注册获取。<br>
-2. 字段定义<br>
-   'x001'                #昨收价<br>
-   'x002'                #最新价<br>
-   'x003'                #开盘价<br>
-   'x004'                #最高价<br>
-   'x005'                #最低价<br>
-   'x006'                #成交量<br>
-   'x007'                #成交额<br>
-   'x008'                #涨跌<br>
-   'x009'                #振幅<br>
-   'x010'                #均价<br>
-   'x011'                #现均差<br>
-   'x012'                #涨停价<br>
-   'x013'                #跌停价<br>
-   'x014'                #涨停板 -1为跌停板，1为涨停板<br>
-   'x015'                #涨速<br>
-   'x016'                #1分钟涨速<br>
-   'x017'                #2分钟涨速<br>
-   'x018'                #3分钟涨速<br>
-   'x019'                #4分钟涨速<br>
-   'x020'                #5分钟涨速<br>
-   'x021'                #静态市盈率<br>
-   'x022'                #动态市盈率<br>
-   'x023'                #TTM市盈率<br>
-   'x024'                #总市值<br>
-   'x025'                #流通市值<br>
-   'x026'                #市净率<br>
-   'x027'                #换手率<br>
-   'x028'                #实际换手率<br>
-   'x029'                #涨幅<br>
-   'x030'                #5日涨幅<br>
-   'x031'                #10日涨幅<br>
-   'x032'                #20日涨幅<br>
-   'x033'                #5日均线<br>
-   'x034'                #10日均线<br>
-   'x035'                #20日均线<br>
-   'x036'                #30日均线<br>
-   'x037'                #60日均线<br>
-   'x038'                #120日均线<br>
-   'x039'                #MACD-DIF<br>
-   'x040'                #MACD-DEA<br>
-   'x041'                #MACD-MACD<br>
-   'x042'                #KDJ-K<br>
-   'x043'                #KDJ-D<br>
-   'x044'                #KDJ-J<br>
-   'x045'                #RSI<br>
-   'x046'                #WR<br>
-   'x047'                #CCI<br>
+// 获取市场成交额
+result = watchApi.getAmount("2025-01-15", token, MethodType.POST);
+```
 
-2.7 其它接口<br>
+#### 6. 核心数据接口 (XTickCoreApi)
 
-2.7.1 股票列表 <br>
+```java
+XTickCoreApi coreApi = new XTickCoreApi();
 
-获取所有股票代码，包括沪深京A股、港股、沪深指数、ETF几类数据。 <br>
+// 分时成交数据
+String result = coreApi.getCoreFenbi(1, "000001", "2025-01-15", token, MethodType.POST);
+List<XTickTimeDeal> fenbiDatas = JsonUtil.jsonToList(result, XTickTimeDeal.class);
 
-1. 请求方法： <br>
-   请求地址：http://api.xtick.top/doc/codes?token=043fbdcba7f3f3ab332ffff123456789 <br>
-   备注：返回数据实例 1-000001 代表 type-code <br>
-   沪深京A股type=1，港股type=3，沪深指数type=10，沪深ETF type=20; <br>
+// 分价表数据
+result = coreApi.getCoreFenjia(1, "000001", "2025-01-15", token, MethodType.POST);
+List<XTickTimePrice> fenjiaDatas = JsonUtil.jsonToList(result, XTickTimePrice.class);
 
-   入参1：token 登录XTick网站，注册获取。 <br>
+// 竞价数据-实时
+result = coreApi.getCoreBidTime(1, "000001", "", token, MethodType.POST);
+List<XTickBidTime> bidTimes = JsonUtil.jsonToList(result, XTickBidTime.class);
 
-2.7.2 交易日历 <br>
+// 停牌股票
+result = coreApi.getCoreTingpai(1, "603311", "2025-01-01", "2025-12-31", token, MethodType.POST);
 
-获取A股历史交易，包含交易所交易日历和个股交易日历。
-交易所是指上交所、深交所、北交所的交易日历。
+// ST股票历史
+result = coreApi.getCoreSt(1, "600636", "2025-01-01", "2025-12-31", token, MethodType.POST);
 
-1. 请求方法<br>
-   请求地址：http://api.xtick.top/doc/calendar?code=000001&startDate=2025-03-25&endDate=2026-03-25&token=043fbdcba7f3f3ab332ffff123456789<br>
-   入参1：code 股票代码<br>
-   比如平安银行为000001，若是查询交易所交易日历，则code为ssb，代表上交所、深交所、北交所。<br>
-   code取值为all，startDate和endDate必须是同一天，表示获取某个交易日内的全市场股票的交易日历。<br>
-   参数2：时间范围，用于指定数据请求范围，表示的范围是[startDate , endDate]区间（包含前后边界）。<br>
-   特别说明：<br>
-- startDate - 起始时间，日期格式：2025-03-25<br>
-- endDate- 结束时间，日期格式：2025-03-25<br>
-  入参3：token 登录XTick网站，注册获取<br>
+// 复权变更数据
+result = coreApi.getCoreChuQuan(1, "000001", "2025-01-01", "2025-12-31", token, MethodType.POST);
 
-## 项目地址
+// 历史价格
+result = coreApi.getCorePrice(1, "000001", 1, "2025-01-01", "2025-12-31", token, MethodType.POST);
+```
 
-目前项目托管在 Gitee 和 Github 平台上中，欢迎大家 Star 和 Fork 支持~ <br>
+#### 7. 热点数据接口 (XTickHotApi)
 
-## 小龙虾投喂文档
-1、直接给AI投喂MD文档： <br>
-接口文档路径：/doc/references下 <br>
+```java
+XTickHotApi hotApi = new XTickHotApi();
 
-2、XTick的最新skills开源项目 <br>
-https://gitee.com/xtick/skills <br>
-https://github.com/xticktop/skills <br>
+// 资金流向
+String result = hotApi.getHotMoney(1, "000001", "2025-01-15", "2025-01-15", token, MethodType.POST);
 
+// 股票板块
+result = hotApi.getHotBoard(1, 1, "2025-01-15", token, MethodType.POST);
 
-### Java SDK :
+// 新闻资讯
+result = hotApi.getHotNews(30, "2025-01-15", token, MethodType.POST);
 
-Gitee地址：https://gitee.com/xtick <br>
-Github地址：https://github.com/xticktop/xtick <br>
+// 分时K线
+result = hotApi.getHotTimekline(1, "000001", token, MethodType.POST);
 
-## 关注&交流
+// 板块信息
+result = hotApi.getHotBk("sw3", token, MethodType.POST);
 
-为了方便小伙伴们沟通交流，创建了QQ群 (加群备注：XTick)
-，目前项目还存在很多不足之处，欢迎各位大佬进群进行交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~<br>
-如遇问题联系作者，邮箱：xticktop@163.com <br>
-[网站说明文档](https://ccn9lag3l54q.feishu.cn/wiki/ABenwEvDOiShYrkaLAJcFY5gnZf)<br>
-**注意**: 本项目仅供学习和研究使用，请勿用于商业用途。使用时请遵守XTick的使用条款。
+// 概念关联
+result = hotApi.getHotGainian("000001", token, MethodType.POST);
+
+// 市场情绪
+result = hotApi.getHotEmotion(1, "2025-01-15", token, MethodType.POST);
+
+// 竞价历史
+result = hotApi.getHotBidHistory(1, "000001", "2025-01-15", "2025-01-15", token, MethodType.POST);
+
+// 竞价详情
+result = hotApi.getHotBidDetail(1, "000001", "2025-01-15", token, MethodType.POST);
+```
+
+#### 8. 量化数据接口 (XTickQuantApi)
+
+```java
+XTickQuantApi quantApi = new XTickQuantApi();
+
+// 获取量化因子实时数据
+String result = quantApi.getQunatData(1, "all", token, MethodType.POST);
+QuantPacket quantData = JsonUtil.jsonToObj(result, QuantPacket.class);
+
+// 转换为字段Map（按指标字段组织数据）
+Map<String, Object> fieldMap = quantData.toFieldMap();
+
+// 转换为股票Map（按个股组织数据）
+Map<String, Object> stockMap = quantData.toStockMap();
+
+// 获取量化因子历史数据
+result = quantApi.getQuantHistory("2025-01-15", token, MethodType.POST);
+```
+
+**量化因子字段定义（47个字段）：**
+
+| 字段代码 | 字段名称 | 字段代码 | 字段名称 |
+|---------|---------|---------|----------|
+| x001 | 昨收价 | x025 | 流通市值 |
+| x002 | 最新价 | x026 | 市净率 |
+| x003 | 开盘价 | x027 | 换手率 |
+| x004 | 最高价 | x028 | 实际换手率 |
+| x005 | 最低价 | x029 | 涨幅 |
+| x006 | 成交量 | x030 | 5日涨幅 |
+| x007 | 成交额 | x031 | 10日涨幅 |
+| x008 | 涨跌 | x032 | 20日涨幅 |
+| x009 | 振幅 | x033 | 5日均线 |
+| x010 | 均价 | x034 | 10日均线 |
+| x011 | 现均差 | x035 | 20日均线 |
+| x012 | 涨停价 | x036 | 30日均线 |
+| x013 | 跌停价 | x037 | 60日均线 |
+| x014 | 涨停板(-1/1) | x038 | 120日均线 |
+| x015 | 涨速 | x039 | MACD-DIF |
+| x016 | 1分钟涨速 | x040 | MACD-DEA |
+| x017 | 2分钟涨速 | x041 | MACD-MACD |
+| x018 | 3分钟涨速 | x042 | KDJ-K |
+| x019 | 4分钟涨速 | x043 | KDJ-D |
+| x020 | 5分钟涨速 | x044 | KDJ-J |
+| x021 | 静态市盈率 | x045 | RSI |
+| x022 | 动态市盈率 | x046 | WR |
+| x023 | TTM市盈率 | x047 | CCI |
+| x024 | 总市值 |  |  |
+
+## 项目结构
+
+```
+src/main/java/org/xtick/
+├── XTickStockApiClient.java      # HTTP API客户端主类（包含所有示例）
+├── XTickWebSocketClient.java     # WebSocket实时数据推送客户端
+├── api/                           # API接口模块
+│   ├── XTickMarketApi.java       # 行情数据API
+│   ├── XTickIndicatorApi.java    # 技术指标API
+│   ├── XTickWatchApi.java        # 盯盘数据API
+│   ├── XTickCoreApi.java         # 核心数据API
+│   ├── XTickHotApi.java          # 热点数据API
+│   ├── XTickQuantApi.java        # 量化数据API
+│   └── XTickFinancialApi.java    # 财务数据API
+├── bean/                          # 数据模型
+│   ├── base/                      # 基础数据模型
+│   ├── core/                      # 核心数据模型
+│   ├── finance/                   # 财务数据模型
+│   ├── hot/                       # 热点数据模型
+│   └── ...                        # 其他数据模型
+├── constant/                      # 常量定义
+│   ├── XTickConst.java           # 系统常量
+│   └── MethodType.java           # 请求方法类型
+├── http/                          # HTTP工具
+│   ├── HttpClientRest.java       # HTTP客户端封装
+│   └── ...
+└── util/                          # 工具类
+    ├── JsonUtil.java             # JSON工具
+    └── XTickUtil.java            # XTick通用工具
+```
+
+## 使用建议
+
+### 1. 性能优化
+
+- **异步处理：** WebSocket接收数据和业务处理务必分线程执行
+- **批量查询：** 合理设置批量参数，避免频繁调用
+- **缓存策略：** 对不常变化的数据（如股票列表、交易日历）进行缓存
+- **连接池：** HTTP请求建议使用连接池管理
+
+### 2. 错误处理
+
+```java
+try {
+    String result = marketApi.getKlineMarket(1, "000001", "1d", "front", 
+        "2025-01-01", "2025-12-31", token, MethodType.POST);
+    List<XTickKlineData> klines = JsonUtil.jsonToList(result, XTickKlineData.class);
+    // 处理数据...
+} catch (IOException e) {
+    System.err.println("API调用失败: " + e.getMessage());
+    // 重试逻辑或错误处理
+}
+```
+
+### 3. 最佳实践
+
+- **Token安全：** 不要将Token硬编码在代码中，建议使用配置文件或环境变量
+- **限流控制：** 注意API调用频率，避免触发限流
+- **数据验证：** 对返回数据进行有效性验证
+- **日志记录：** 记录关键API调用和错误信息
+
+## 常见问题
+
+### Q1: 如何获取API Token？
+
+访问 [XTick官网](http://www.xtick.top) 注册账号，登录后在个人中心获取Token。
+
+### Q2: WebSocket连接断开怎么办？
+
+SDK已实现自动重连机制，无需手动处理。如需自定义重连策略，可修改`XTickWebSocketClient.onClose()`方法。
+
+### Q3: 分钟数据单次请求时间跨度限制？
+
+period为分钟类型（1m、5m、15m、30m、1h），单次请求时间跨度最大为30天。
+
+### Q4: 如何获取全市场数据？
+
+将code参数设置为"all"，例如：
+```java
+String result = marketApi.getKlineMarket(1, "all", "1d", "none", 
+    "2025-01-15", "2025-01-15", token, MethodType.POST);
+```
+
+### Q5: 支持哪些市场？
+
+- 沪深京A股 (type=1)
+- 港股 (type=3)
+- 沪深指数 (type=10)
+- 沪深ETF (type=20)
+
+## 数据更新说明
+
+| 数据类型 | 更新频率 | 历史数据范围 |
+|---------|---------|-------------|
+| Tick实时数据 | 实时更新 | 2025年2月-至今（A股、ETF）<br>2025年10月-至今（指数、北证） |
+| Tick历史数据 | 盘后更新 | 同上 |
+| 竞价实时数据 | 实时更新 | 2025年7月-至今 |
+| 竞价历史详情 | 9:25分更新 | 2025年2月-至今 |
+| 1分钟K线 | 实时更新 | 2024年4月-至今 |
+| 其他周期K线 | 实时更新 | 2024年4月-至今（支持复权） |
+| 日线数据 | 实时更新 | 公司上市-至今（支持复权） |
+| 量化因子 | 实时更新 | 2008年1月-至今 |
+| 财务数据 | 盘后更新 | 2008年1月-至今 |
+| 交易日历 | 3:05分更新 | 公司上市-至今 |
+
+## Skills资源
+
+XTick提供了AI Skills开源项目，方便AI助手更好地理解和使用API：
+
+- **Gitee:** https://gitee.com/xtick/skills
+- **GitHub:** https://github.com/xticktop/skills
+
+Skills文档路径：`/doc/references`
+
+## 社区与支持
+
+- **官方网站：** http://www.xtick.top
+- **GitHub:** https://github.com/xticktop/xtick
+- **Gitee:** https://gitee.com/xtick
+- **邮箱：** xticktop@163.com
+- **QQ群：** 加群备注：XTick
+- **详细文档：** [飞书文档](https://ccn9lag3l54q.feishu.cn/wiki/ABenwEvDOiShYrkaLAJcFY5gnZf)
+
+## 贡献指南
+
+欢迎提交Issue和Pull Request！如果您发现bug或有改进建议，请通过以下方式反馈：
+
+1. 在GitHub/Gitee上提交Issue
+2. 发送邮件至 xticktop@163.com
+3. 加入QQ群交流
+
+## 许可证
+
+本项目仅供学习和研究使用，请勿用于商业用途。使用时请遵守XTick的使用条款。
+
+## 致谢
+
+感谢所有使用和支持XTick项目的开发者们！您的支持是我们持续维护和改进的动力。
+
+---
+
+<p align=center>
+  <strong>⭐ 如果这个项目对您有帮助，请给我们一个Star！ ⭐</strong>
+</p>
 
 
 
