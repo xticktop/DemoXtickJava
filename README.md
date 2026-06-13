@@ -12,10 +12,9 @@
 
 ## 项目介绍
 
-XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、准确、稳定的行情数据接入能力。本SDK基于Java语言开发，支持HTTP REST API和WebSocket实时推送两种方式，帮助开发者和研究者快速构建创新的交易和分析工具。
+XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、准确、稳定的行情数据接入能力。本SDK基于Java语言开发，支持HTTP REST API方式，帮助开发者和研究者快速构建创新的交易和分析工具。
 
 **主要特性：**
-- 🚀 支持实时行情数据推送（WebSocket）
 - 📊 提供完整的K线数据查询（多周期、复权支持）
 - 💹 丰富的技术指标计算（MACD、KDJ、RSI等100+指标）
 - 💰 财务数据查询（资产负债表、利润表、现金流量表等）
@@ -53,7 +52,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 <td style="text-align: left;">tick实时数据</td>
 <td style="text-align: left;">实时更新</td>
 <td style="text-align: left;">数据全推</td>
-<td style="text-align: left;">api调用、ws推送</td>
+<td style="text-align: left;">api调用</td>
 <td rowspan="2" style="text-align: left;"><p>指数和北证：2025年10月-至今</p>
 <p>A股、ETF：2025年2月-至今</p></td>
 </tr>
@@ -68,7 +67,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 <td style="text-align: left;">竞价实时数据</td>
 <td style="text-align: left;">实时更新</td>
 <td style="text-align: left;">数据全推</td>
-<td style="text-align: left;">api调用、ws推送</td>
+<td style="text-align: left;">api调用</td>
 <td rowspan="3" style="text-align: left;"><p>竞价历史：2025年7月-至今</p>
 <p>竞价历史详情：2025年2月-至今</p></td>
 </tr>
@@ -89,7 +88,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 <td style="text-align: left;">1分钟实时数据</td>
 <td style="text-align: left;">实时更新</td>
 <td style="text-align: left;">数据全推</td>
-<td style="text-align: left;">ws推送、ws推送</td>
+<td style="text-align: left;">api调用</td>
 <td rowspan="3" style="text-align: left;"><p>分钟级别数据：2024年4月-至今</p>
 <p>所有分钟周期数据，均支持复权</p></td>
 </tr>
@@ -97,7 +96,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 <td style="text-align: left;">1分钟K线数据</td>
 <td style="text-align: left;">按1分钟频率实时更新</td>
 <td style="text-align: left;">数据全推</td>
-<td style="text-align: left;">api调用、ws推送</td>
+<td style="text-align: left;">api调用</td>
 </tr>
 <tr>
 <td style="text-align: left;">其它分钟K线数据</td>
@@ -125,7 +124,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 <td style="text-align: left;">量化因子实时数据</td>
 <td style="text-align: left;">实时更新</td>
 <td style="text-align: left;">数据全推</td>
-<td style="text-align: left;">api调用、ws推送</td>
+<td style="text-align: left;">api调用</td>
 <td rowspan="2" style="text-align: left;">2008年1月-至今</td>
 </tr>
 <tr>
@@ -197,7 +196,6 @@ XTick Java SDK提供了完整的API接口封装，主要分为以下几个模块
 ### 核心类说明
 
 - **XTickStockApiClient** - HTTP API客户端主类，提供所有REST API接口的示例调用
-- **XTickWebSocketClient** - WebSocket实时数据推送客户端
 - **XTickMarketApi** - 行情数据API（K线、股票信息、交易日历等）
 - **XTickIndicatorApi** - 技术指标API（100+金融指标计算）
 - **XTickWatchApi** - 盯盘数据API（五档行情、龙虎榜、市场情绪等）
@@ -207,78 +205,7 @@ XTick Java SDK提供了完整的API接口封装，主要分为以下几个模块
 
 ### 接口分类
 
-#### 1. WebSocket订阅接口
-
-**重要提示：** 数据接受和数据处理务必放在两个线程中，不要阻塞数据接受！
-
-订阅方式分为两种场景：
-
-**场景A：按交易所订阅**
-
-| 订阅代码 | 说明 | 推送频率 |
-|---------|------|----------|
-| `bid.1` | 沪深京A股集合竞价期间竞价数据 | 实时 |
-| `quant.data.1` | 沪深京A股量化因子数据 | 1分钟 |
-| `quant.time.1` | 沪深京A股量化因子数据 | 实时 |
-| `tick.SZ.1` | 深交所A股的tick数据 | 实时 |
-| `tick.SZ.10` | 深交所指数的tick数据 | 实时 |
-| `tick.SZ.20` | 深交所ETF的tick数据 | 实时 |
-| `tick.SH.1` | 上交所A股的tick数据 | 实时 |
-| `tick.SH.10` | 上交所指数的tick数据 | 实时 |
-| `tick.SH.20` | 上交所ETF的tick数据 | 实时 |
-| `tick.BJ.1` | 北交所A股的tick数据 | 实时 |
-| `tick.HK.3` | 港交所港股的tick数据 | 实时 |
-| `minute.SZ.1` | 深交所A股的1分钟k线数据 | 实时 |
-| `minute.SZ.10` | 深交所指数的1分钟k线数据 | 实时 |
-| `minute.SZ.20` | 深交所ETF的1分钟k线数据 | 实时 |
-| `minute.SH.1` | 上交所A股的1分钟k线数据 | 实时 |
-| `minute.SH.10` | 上交所指数的1分钟k线数据 | 实时 |
-| `minute.SH.20` | 上交所ETF的1分钟k线数据 | 实时 |
-| `minute.BJ.1` | 北交所A股的1分钟k线数据 | 实时 |
-| `minute.HK.3` | 港交所港股的1分钟k线数据 | 实时 |
-| `kline.1m.1` | 沪深京A股的1分钟k线数据 | 1分钟 |
-| `kline.1m.10` | 沪深京指数的1分钟k线数据 | 1分钟 |
-| `kline.1m.20` | 沪深京ETF的1分钟k线数据 | 1分钟 |
-| `kline.1m.3` | 港股的1分钟k线数据 | 1分钟 |
-
-**场晦B：按个股订阅**
-
-- 格式：`股票代码.市场代码`，例如：`000001.SZ`、`600000.SH`
-- 支持最多50个股票同时订阅
-- 推送频率：实时
-
-**使用示例：**
-
-```java
-import org.xtick.XTickWebSocketClient;
-import com.google.common.collect.ImmutableList;
-import java.util.List;
-
-public class WebSocketDemo {
-    public static void main(String[] args) throws Exception {
-        // 订阅多个股票的tick数据
-        List<String> authCodes = ImmutableList.of("000001.SZ", "600000.SH");
-        
-        // 或者订阅全市场数据
-        // List<String> authCodes = ImmutableList.of("tick.SZ.1", "tick.SH.1");
-        
-        String user = URLEncoder.encode(
-            JsonUtil.toJson(TickSubcribeInfo.builder()
-                .token(XTickConst.token)
-                .authCodes(authCodes)
-                .build()), 
-            StandardCharsets.UTF_8.toString());
-        
-        XTickWebSocketClient wsClient = new XTickWebSocketClient(
-            URI.create(String.format("ws://ws.xtick.top/ws/%s", user)));
-        wsClient.exec();
-    }
-}
-```
-
-#### 2. 行情数据接口 (XTickMarketApi)
-
-**获取K线数据**
+#### 1. 行情数据接口 (XTickMarketApi)
 
 ```java
 XTickMarketApi marketApi = new XTickMarketApi();
@@ -322,7 +249,7 @@ String result = marketApi.getCalendar(
 List<XTickStockCalendar> calendars = JsonUtil.jsonToList(result, XTickStockCalendar.class);
 ```
 
-#### 3. 技术指标接口 (XTickIndicatorApi)
+#### 2. 技术指标接口 (XTickIndicatorApi)
 
 支持100+金融技术指标计算，包括：
 
@@ -375,7 +302,7 @@ result = indicatorApi.rsi(
 
 详细指标文档请访问：http://www.xtick.top/indicator
 
-#### 4. 财务数据接口 (XTickMarketApi)
+#### 3. 财务数据接口 (XTickMarketApi)
 
 ```java
 XTickMarketApi marketApi = new XTickMarketApi();
@@ -404,7 +331,7 @@ result = marketApi.getTopFlowHolder("000001", "2024-01-01", "2025-12-31", token,
 - Top10flowholder - 十大流通股东
 - Pershareindex - 每股指标
 
-#### 5. 盯盘数据接口 (XTickWatchApi)
+#### 4. 盯盘数据接口 (XTickWatchApi)
 
 ```java
 XTickWatchApi watchApi = new XTickWatchApi();
@@ -426,7 +353,7 @@ result = watchApi.getLonghubang("2025-01-15", token, MethodType.POST);
 result = watchApi.getAmount("2025-01-15", token, MethodType.POST);
 ```
 
-#### 6. 核心数据接口 (XTickCoreApi)
+#### 5. 核心数据接口 (XTickCoreApi)
 
 ```java
 XTickCoreApi coreApi = new XTickCoreApi();
@@ -456,7 +383,7 @@ result = coreApi.getCoreChuQuan(1, "000001", "2025-01-01", "2025-12-31", token, 
 result = coreApi.getCorePrice(1, "000001", 1, "2025-01-01", "2025-12-31", token, MethodType.POST);
 ```
 
-#### 7. 热点数据接口 (XTickHotApi)
+#### 6. 热点数据接口 (XTickHotApi)
 
 ```java
 XTickHotApi hotApi = new XTickHotApi();
@@ -489,7 +416,7 @@ result = hotApi.getHotBidHistory(1, "000001", "2025-01-15", "2025-01-15", token,
 result = hotApi.getHotBidDetail(1, "000001", "2025-01-15", token, MethodType.POST);
 ```
 
-#### 8. 量化数据接口 (XTickQuantApi)
+#### 7. 量化数据接口 (XTickQuantApi)
 
 ```java
 XTickQuantApi quantApi = new XTickQuantApi();
@@ -542,7 +469,6 @@ result = quantApi.getQuantHistory("2025-01-15", token, MethodType.POST);
 ```
 src/main/java/org/xtick/
 ├── XTickStockApiClient.java      # HTTP API客户端主类（包含所有示例）
-├── XTickWebSocketClient.java     # WebSocket实时数据推送客户端
 ├── api/                           # API接口模块
 │   ├── XTickMarketApi.java       # 行情数据API
 │   ├── XTickIndicatorApi.java    # 技术指标API
@@ -572,7 +498,6 @@ src/main/java/org/xtick/
 
 ### 1. 性能优化
 
-- **异步处理：** WebSocket接收数据和业务处理务必分线程执行
 - **批量查询：** 合理设置批量参数，避免频繁调用
 - **缓存策略：** 对不常变化的数据（如股票列表、交易日历）进行缓存
 - **连接池：** HTTP请求建议使用连接池管理
@@ -604,15 +529,11 @@ try {
 
 访问 [XTick官网](http://www.xtick.top) 注册账号，登录后在个人中心获取Token。
 
-### Q2: WebSocket连接断开怎么办？
-
-SDK已实现自动重连机制，无需手动处理。如需自定义重连策略，可修改`XTickWebSocketClient.onClose()`方法。
-
-### Q3: 分钟数据单次请求时间跨度限制？
+### Q2: 分钟数据单次请求时间跨度限制？
 
 period为分钟类型（1m、5m、15m、30m、1h），单次请求时间跨度最大为30天。
 
-### Q4: 如何获取全市场数据？
+### Q3: 如何获取全市场数据？
 
 将code参数设置为"all"，例如：
 ```java
@@ -620,7 +541,7 @@ String result = marketApi.getKlineMarket(1, "all", "1d", "none",
     "2025-01-15", "2025-01-15", token, MethodType.POST);
 ```
 
-### Q5: 支持哪些市场？
+### Q4: 支持哪些市场？
 
 - 沪深京A股 (type=1)
 - 港股 (type=3)
