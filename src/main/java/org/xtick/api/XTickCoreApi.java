@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * 量化数据接口
+ * 核心数据API接口。
  * <p>
  * 官网：http://www.xtick.top/
  */
