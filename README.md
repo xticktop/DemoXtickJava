@@ -23,8 +23,7 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 - 🔄 支持数据全推和按需订阅
 
 **官方网站：** http://www.xtick.top  
-**GitHub地址：** https://github.com/xticktop/xtick  
-**Gitee地址：** https://gitee.com/xtick
+**GitHub地址：** https://github.com/xticktop/DemoXtickJava
 
 ## 已接入数据预览
 
@@ -630,18 +629,15 @@ String result = marketApi.getKlineMarket(1, "all", "1d", "1",
 
 XTick提供了AI Skills开源项目，方便AI助手更好地理解和使用API：
 
-- **Gitee:** https://gitee.com/xtick/skills
 - **GitHub:** https://github.com/xticktop/skills
 
 
 ## 社区与支持
 
 - **官方网站：** http://www.xtick.top
-- **GitHub:** https://github.com/xticktop/xtick
-- **Gitee:** https://gitee.com/xtick
+- **GitHub:** https://github.com/xticktop/DemoXtickJava
 - **邮箱：** xticktop@163.com
 - **QQ群：** 加群备注：XTick
-- **详细文档：** [飞书文档](https://ccn9lag3l54q.feishu.cn/wiki/ABenwEvDOiShYrkaLAJcFY5gnZf)
 
 ## 贡献指南
 
