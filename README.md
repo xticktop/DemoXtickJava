@@ -189,6 +189,48 @@ XTick Java SDK是一个专业的金融数据API客户端库，提供了全面、
 </tbody>
 </table>
 
+## 实时竞价、分钟行情与短线热点
+
+XTick Java SDK 提供沪深京 A 股实时集合竞价、盘中分钟行情和短线热点数据接口。下表概述各类数据的适用场景与接口路径；调用均需提供网站获取的 `token`。
+
+| 数据能力 | 接口与路径 | 适用场景和关键说明 |
+|---|---|---|
+| 实时集合竞价 | `XTickCoreApi.getCoreBidTime`，`/doc/core/bidtime` | 获取沪深京股票 9:15–9:25 竞价时段的最新数据；`code` 支持单只、多只逗号分隔或 `all` 全市场，支持可选筛选、排序和条数限制。 |
+| 竞价历史详情 | `XTickHotApi.getHotBidDetail`，`/doc/hot/biddetail` | 获取单只股票竞价阶段详情；竞价结束后约 9:25 更新。全市场竞价历史数据可使用增量更新接口。 |
+| 实时 1 分钟数据 | `XTickMarketApi.getKlineMinute`，`/doc/kline/minute` | 快速获取单只股票日内实时 1 分钟数据；支持标的类型和复权方式，不支持批量或 `all`。 |
+| 盘中分钟 K 线 | `XTickWatchApi.getOrderMinute`，`/doc/order/minute` | 获取盘中分钟 K 线，`code` 支持单只、多只（最多 100 只）或 `all` 全市场，适合行情盯盘。 |
+| 连板天梯 | `XTickHotApi.getHotBoard`，`/doc/hot/board` | 获取沪深京股票盘中涨停、跌停或炸板梯队数据，覆盖一进二、二进三等连板信息；`flag` 分别为 1、2、3。盘中查询时 `tradeDate` 使用当日交易日期。 |
+
+### 实时集合竞价与分钟数据示例
+
+```java
+XTickCoreApi coreApi = new XTickCoreApi();
+String auctionData = coreApi.getCoreBidTime(1, "all", "", token, MethodType.POST);
+
+XTickMarketApi marketApi = new XTickMarketApi();
+String minuteData = marketApi.getKlineMinute(1, "000001", "1", token, MethodType.POST);
+
+XTickWatchApi watchApi = new XTickWatchApi();
+String marketMinuteData = watchApi.getOrderMinute(1, "all", token, MethodType.POST);
+```
+
+### 连板天梯与短线热点数据
+
+连板天梯用于观察涨停、跌停和炸板梯队；结合市场情绪、资金流向、分笔成交、日内分时和新闻资讯，可用于盘中跟踪与交易日复盘。热点接口包括：
+
+- **连板天梯**：`/doc/hot/board`，`flag=1` 涨停、`flag=2` 跌停、`flag=3` 炸板。
+- **市场情绪**：`/doc/hot/emotion`，提供短线市场情绪数据。
+- **资金流向**：`/doc/hot/timemoney` 为盘中实时数据，`/doc/hot/historymoney` 为历史数据；资金统计口径可能因平台而异，建议结合多个数据源交叉参考。
+- **分笔与分时**：`/doc/hot/timefenbi` 提供盘中分笔成交快照，`/doc/hot/timekline` 提供日内价格变化轨迹。
+- **竞价与资讯**：`/doc/hot/bidhistory` 提供竞价历史数据，`/doc/hot/biddetail` 提供竞价详情，`/doc/hot/news` 提供主流财经资讯。
+- **全市场增量更新**：`/doc/hot/dayupdate` 可按数据类型获取竞价详情或分钟数据。该接口严格限流；成功获取当天数据后无需重复请求，请按接口文档要求单线程轮询。
+
+```java
+XTickHotApi hotApi = new XTickHotApi();
+String limitUpLadder = hotApi.getHotBoard(1, 1, tradeDate, token, MethodType.POST);
+String marketEmotion = hotApi.getHotEmotion(1, tradeDate, token, MethodType.POST);
+```
+
 ## API接口文档
 
 XTick Java SDK提供了完整的API接口封装，主要分为以下几个模块：
@@ -318,6 +360,9 @@ result = marketApi.getTopHolder("000001", "2024-01-01", "2025-12-31", token, Met
 
 // 十大流通股东
 result = marketApi.getTopFlowHolder("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
+
+// 股本表
+result = marketApi.getCapital("000001", "2024-01-01", "2025-12-31", token, MethodType.POST);
 ```
 
 **财务报表类型：**
@@ -335,6 +380,9 @@ result = marketApi.getTopFlowHolder("000001", "2024-01-01", "2025-12-31", token,
 
 ```java
 XTickWatchApi watchApi = new XTickWatchApi();
+
+// 龙虎榜历史详情
+String lhbResult = watchApi.getLhb("2025-01-15", token, MethodType.POST);
 
 // 日K线-实时数据（支持批量参数，支持ALL参数，适合盯盘）
 String result = watchApi.getOrderDay(1, "000001", token, MethodType.POST);
@@ -384,12 +432,18 @@ result = coreApi.getCoreChuQuan(1, "000001", "2025-01-01", "2025-12-31", token, 
 
 // 历史价格
 result = coreApi.getCorePrice(1, "000001", 1, "2025-01-01", "2025-12-31", token, MethodType.POST);
+
+// 盘中批量K线；time=0获取最新K线，time=-1获取当日数据
+result = coreApi.getCoreBatchKline(1, "000001", 0L, "1m", token, MethodType.POST);
 ```
 
 #### 6. 热点数据接口 (XTickHotApi)
 
 ```java
 XTickHotApi hotApi = new XTickHotApi();
+
+// 分笔快照-实时数据
+String fenbiResult = hotApi.getHotTimeFenbi(1, "000001", token, MethodType.POST);
 
 // 连板天梯-实时接口（flag: 1=涨停, 2=跌停, 3=炸板）
 String result = hotApi.getHotBoard(1, 1, "2025-01-15", token, MethodType.POST);
@@ -579,7 +633,6 @@ XTick提供了AI Skills开源项目，方便AI助手更好地理解和使用API�
 - **Gitee:** https://gitee.com/xtick/skills
 - **GitHub:** https://github.com/xticktop/skills
 
-Skills文档路径：`/doc/references`
 
 ## 社区与支持
 

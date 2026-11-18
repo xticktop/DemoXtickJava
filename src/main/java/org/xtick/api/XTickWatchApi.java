@@ -16,6 +16,15 @@ import java.util.Map;
 public class XTickWatchApi {
 
     /**
+     * 龙虎榜详情历史数据，盘后更新。
+     */
+    public String getLhb(String tradeDate, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/order/lhb";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("tradeDate", tradeDate).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
      * 日K线-实时数据（新接口）
      * 获取盘中实时日K线数据。支持批量参数，支持ALL参数。该接口单次获取全市场行情数据，非常适合盯盘。
      */

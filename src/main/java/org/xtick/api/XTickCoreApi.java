@@ -16,6 +16,15 @@ import java.util.Map;
 public class XTickCoreApi {
 
     /**
+     * 盘中实时获取日内K线数据，支持批量获取。
+     */
+    public String getCoreBatchKline(int type, String code, long time, String period, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/core/batchkline";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("time", time).put("period", period).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
      * 核心指标-实时接口
      * 获取沪深京股票交易日盘中实时指标数据，包括涨速、换手率、市盈率、市净率等。
      */

@@ -112,4 +112,13 @@ public class XTickMarketApi {
         Map<String, Object> para = ImmutableMap.<String, Object>builder().put("code", code).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
+
+    /**
+     * 股本表，数据范围：公司上市-至今。
+     */
+    public String getCapital(String code, String startDate, String endDate, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/capital";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("code", code).put("startDate", startDate).put("endDate", endDate).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
 }

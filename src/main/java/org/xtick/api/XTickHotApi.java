@@ -16,6 +16,15 @@ import java.util.Map;
 public class XTickHotApi {
 
     /**
+     * 股票分时成交数据接口，盘中实时更新。
+     */
+    public String getHotTimeFenbi(int type, String code, String token, MethodType method) throws IOException {
+        String url = XTickConst.serverUrl + "/doc/hot/timefenbi";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder().put("type", type).put("code", code).put("token", token).build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    /**
      * 连板天梯-实时接口
      * 获取沪深京股票交易日盘中涨停板、跌停板、炸板数据。
      * flag 枚举取值：1-涨停，2-跌停，3-炸板

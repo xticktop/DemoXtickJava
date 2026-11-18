@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class TickSubcribeInfo {
     private String token;
+    @Builder.Default
+    private String operation = "subscribe";//操作类型 subscribe/unsubscribe/querysubscribe
     /**
      * 解释
      * 订阅类别 period.market.type  tick.SH.1
