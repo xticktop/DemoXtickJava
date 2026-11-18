@@ -637,7 +637,6 @@ XTick提供了AI Skills开源项目，方便AI助手更好地理解和使用API�
 - **官方网站：** http://www.xtick.top
 - **GitHub:** https://github.com/xticktop/DemoXtickJava
 - **邮箱：** xticktop@163.com
-- **QQ群：** 加群备注：XTick
 
 ## 贡献指南
 
